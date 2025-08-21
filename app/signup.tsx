@@ -1,0 +1,171 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useFocusEffect, useRouter } from "expo-router";
+import React, { useCallback, useEffect, useState } from "react";
+import { Keyboard, Text, TextInput, TouchableOpacity, View } from "react-native";
+import "../global.css";
+import SignUpController from './Controller/SignUpController';
+import Header from "./header";
+import Loader from "./loader";
+import { globalNavBarStatus as setGlobalNavBar } from "./navbar";
+import useSharedStore from "./Repository/store";
+import AppDetails from "./Service/AppDetails";
+
+
+interface SignUpScreenProp{
+    navigation:any
+    route:any
+}
+
+
+
+const SignUp:React.FC<SignUpScreenProp> =  ({navigation})=>{
+    const router = useRouter();
+
+
+    const loaderStore = useSharedStore((state) => state.value);
+    const setLoaderStore = useSharedStore((state) => state.setValue); // ✅ directly call the hook
+
+
+    const [isLoader, setIsLoader] = useState(false)
+
+
+
+    const [isInputFocus, setIsInputFocus] = useState(false);
+    const [username, setUsername] = useState('')
+    const [matricNumber, setMatricNumber] = useState('');
+    const [password, setPassword] = useState('');
+    const [passwordVisible, setPasswordVisible] = useState(false);
+    const [formFeedback, setFormFeedbackMessage] = useState("");
+
+
+
+        useFocusEffect(
+        useCallback(() => {
+
+            setGlobalNavBar(false)
+
+        }, [])
+
+    );
+
+
+
+    useEffect(()=>{
+     Keyboard.addListener("keyboardDidShow", () => {
+         setIsInputFocus(true);
+    });
+    })
+
+
+
+    const handlekeyhide =  useEffect(()=>{
+         Keyboard.addListener("keyboardDidHide", () => {
+         setIsInputFocus(false);
+
+    });
+
+    })
+
+
+
+    
+    const handleSignUp = async ()=>{
+
+      loaderStore.setLoaderStatus(true)
+      setIsLoader(true)
+        
+      const message =  await SignUpController(username, matricNumber, password)
+
+      setFormFeedbackMessage(message)
+
+
+      if (message === "Successful"){
+
+            loaderStore.setLoaderStatus(false)
+            setLoaderStore({...loaderStore})   
+
+
+           await AsyncStorage.setItem("hasLaunched", "true")
+           await AsyncStorage.setItem("matric-number", matricNumber.trim());
+        
+         router.push("/home")
+        //  router.dismissAll()   
+    }
+      else if (message === "ERR_BAD_RESPONSE"){
+            console.log("Server Error")
+
+            loaderStore.setFeedBackMode(true)
+        
+            return;
+        }
+
+
+        loaderStore.setLoaderStatus(false)
+        setLoaderStore({...loaderStore})
+    }
+
+
+
+    useEffect(()=>{
+
+        if (!loaderStore.getLoaderStatus()){
+            setIsLoader(false)
+
+        }
+
+    },[loaderStore.getLoaderStatus()])
+
+
+    
+
+
+    return(
+            <View className="h-[100%] bg-[#F5F5DC] items-center" style={{justifyContent: isInputFocus == true ? "flex-start" : "center", backgroundColor:AppDetails.color.backgroundColor }}>
+                
+                {
+                    isLoader ? 
+
+                    <Loader />
+
+                    :
+
+                    ""
+                }
+
+
+                <Header />
+                  <Text className="color-[#333] text-4xl font-nunito-bold">Create your account</Text>
+
+                  <View className="h-[50%] w-[90%] rounded-3xl flex justify-center items-center">
+                    <View className=" w-[90%] h-24">
+                        <TextInput  placeholder="Username" placeholderTextColor="gray" value = {username} onChangeText={setUsername} className="color-[#333] w-[100%]  rounded-3xl h-[70%] text-xl px-3"/>
+                    </View>
+                    <View className=" w-[90%] h-24">
+                        <TextInput  placeholder="Matric No" placeholderTextColor="gray" keyboardType="numeric" value={matricNumber}  onChangeText={setMatricNumber}  className="color-[#333] w-[100%]  rounded-3xl h-[70%] text-xl px-3"/>
+                    </View>
+                    <View className=" w-[90%] h-24">
+                        <TextInput placeholder="Password" placeholderTextColor="gray" secureTextEntry={!passwordVisible} value={password} onChangeText={setPassword} className="color-[#333] w-[100%]  rounded-3xl h-[70%] text-xl px-3"/>
+                    </View>
+
+                    
+
+                    <View className="items-center">
+                        <Text className={formFeedback != "Successful" ? "text-red-800" : "text-green-600"}>{formFeedback}</Text>
+                        <Text>Already a member?</Text>
+                        <TouchableOpacity onPress={()=> router.push("./signin")}>
+                            <Text className="color-black font-bold">Sign in</Text>
+                        </TouchableOpacity>
+                    </View>
+                  </View>
+
+            
+                <TouchableOpacity className="rounded-full h-20 w-[95%] bg-[#C4A484] absolute bottom-3 justify-center items-center " onPress={handleSignUp}>
+                        <Text className='font-nunito text-2xl'>SignUp</Text>
+                </TouchableOpacity>
+
+            </View>
+    )
+}
+
+
+export default SignUp
