@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "430436542498",
+    "project_id": "fairvote-8314c",
+    "storage_bucket": "fairvote-8314c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:430436542498:android:6346d1e4c87368cb40827b",
+        "android_client_info": {
+          "package_name": "com.joseph.fairvote"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8vNxxYSvVrmbO3QuTzA6it8s4OUVcWs0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
