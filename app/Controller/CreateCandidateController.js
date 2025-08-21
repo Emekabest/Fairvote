@@ -1,3 +1,6 @@
+import { ref } from "firebase/database";
+import { db } from "../../firebase.config";
+
 
 const CreateCandidateController = async (pollCode, candidateList)=>{
 

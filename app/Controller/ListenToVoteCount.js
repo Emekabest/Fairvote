@@ -1,5 +1,5 @@
-import { db } from "@/firebase.config"; // your initialized Firebase app
 import { onValue, ref } from "firebase/database";
+import { db } from "../../firebase.config";
 
 
 const ListenToVoteCount = (pollId, callback, candidates)=>{

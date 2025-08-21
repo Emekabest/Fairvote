@@ -1,5 +1,5 @@
-import { db } from "@/firebase.config";
 import { push, ref, set } from "firebase/database";
+import { db } from "../../firebase.config";
 
 
 const CreatePollController = async ({pollname, code, creator, candidateList})=>{

@@ -1,5 +1,5 @@
-import { db } from "@/firebase.config"; // your initialized Firebase app
 import { get, ref } from "firebase/database";
+import { db } from "../../firebase.config";
 
 const SignInController = async(matricNumber, password)=>{
 

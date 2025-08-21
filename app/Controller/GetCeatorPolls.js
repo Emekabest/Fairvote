@@ -1,5 +1,5 @@
-import { db } from "@/firebase.config";
 import { equalTo, get, orderByChild, query, ref } from "firebase/database";
+import { db } from "../../firebase.config";
 
 
 const GetCreatorPolls = async(matricNumber)=>{

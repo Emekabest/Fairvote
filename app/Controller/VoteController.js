@@ -1,6 +1,6 @@
 // firebase-hooks.ts (or wherever you keep Firebase helper functions)
-import { db } from "@/firebase.config"; // your initialized Firebase app
 import { get, ref, runTransaction } from "firebase/database";
+import { db } from "../../firebase.config";
 
 
 const VoteController = async({pollId, candidateId, userId})=>{

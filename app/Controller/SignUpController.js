@@ -1,5 +1,5 @@
-import { db } from "@/firebase.config"; // your initialized Firebase app
 import { get, ref, set } from "firebase/database";
+import { db } from "../../firebase.config";
 import TextFieldService from "../Service/TextFieldService";
 
 
