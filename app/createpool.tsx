@@ -187,9 +187,9 @@ const CreatePool = ()=>{
 
                     <View className="pt-5">
 
-                        <TextInput className="h-15 rounded-full px-5 font-nunito text-2xl mb-5" value={candidateFirstName} onChangeText={setCandidateFirstName} placeholder="firstname" />
+                        <TextInput className="h-15 rounded-full px-5 text-2xl mb-5" value={candidateFirstName} onChangeText={setCandidateFirstName} placeholder="firstname" />
 
-                        <TextInput className="h-15 rounded-full px-5 font-nunito text-2xl mt-5" value={candidateLastName} onChangeText={setCandidateLastName} placeholder="lastname" />
+                        <TextInput className="h-15 rounded-full px-5 text-2xl mt-5" value={candidateLastName} onChangeText={setCandidateLastName} placeholder="lastname" />
                         <View className="w-[100%] h-36 items-center justify-center">
 
                             <Text className="pb-3 text-sm color-red-600">{formFeedbackMsg}</Text>
@@ -204,7 +204,7 @@ const CreatePool = ()=>{
                 
 
                 <View className="h-[60%] px-4">
-                    <TextInput className="h-[10%] font-nunito-bold text-lg text-center" value={pollname} onChangeText={setPollName}  placeholder="Enter name of poll" />
+                    <TextInput className="h-[10%] text-lg text-center" value={pollname} onChangeText={setPollName}  placeholder="Enter name of poll" />
 
 
                         <FlatList

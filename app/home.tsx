@@ -1,7 +1,8 @@
+import { FontAwesome } from "@expo/vector-icons";
 import { useFonts } from "expo-font";
 import { router, useFocusEffect } from "expo-router";
 import React, { useCallback, useEffect, useState } from "react";
-import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, Text, TouchableOpacity, View } from "react-native";
 import HomeController from "./Controller/HomeController";
 import Loader from "./loader";
 import { globalNavBarStatus as setGlobalNavBar } from "./navbar";
@@ -160,8 +161,8 @@ const Home = () => {
             <View className="h-[12%] flex-row">
                 
                 <View className="h-[100%] w-[70%]  flex-row items-center px-5">
-                    <View className="h-16 w-16 bg-orange-400 rounded-full mr-3">
-                        <Image src="" />
+                    <View className="h-16 w-16 bg-[#fff] rounded-full mr-3 items-center justify-center">
+                        <FontAwesome name="user" size={50} color="#b3b3b3" />
                     </View>
                     <View>
                         <Text className="font-nunito text-sm">{Greeting()}</Text>

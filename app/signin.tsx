@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useFonts } from "expo-font";
 import { useFocusEffect, useRouter } from "expo-router";
 import React, { useCallback, useEffect, useState } from "react";
 import { Keyboard, Text, TextInput, TouchableOpacity, View } from "react-native";
@@ -7,11 +8,13 @@ import Header from "./header";
 import Loader from "./loader";
 import { globalNavBarStatus as setGlobalNavBar } from "./navbar";
 import useSharedStore from "./Repository/store";
+import ActivateFonts from "./Service/ActivateFont";
 import AppDetails from "./Service/AppDetails";
 
 
 
 const SignIn = ()=>{
+    const [fontsLoaded] = useFonts(ActivateFonts);
     const router = useRouter();
 
     const loaderStore = useSharedStore((state) => state.value);
@@ -113,7 +116,7 @@ const SignIn = ()=>{
 
 
                 {
-                    isLoader ? 
+                    isLoader || !fontsLoaded ? 
 
                     <Loader />
 

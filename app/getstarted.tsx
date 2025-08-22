@@ -3,6 +3,7 @@ import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import "../global.css";
+import Loader from './loader';
 import { globalNavBarStatus as setGlobalNavBar } from "./navbar";
 import ActivateFonts from "./Service/ActivateFont";
 import AppDetails from './Service/AppDetails';
@@ -28,14 +29,23 @@ const GetStarted:React.FC<GetStartedProp> =  ({navigation})=>{
   
       const [fontsLoaded] = useFonts(ActivateFonts);
       
-      if (!fontsLoaded) {
-      return null; // Or <AppLoading />
-      }
-
         
 
 return (
+
+    
+
     <View className="h-[100%] flex justify-center items-center"  style={{backgroundColor:AppDetails.color.backgroundColor}}>
+
+      {
+        !fontsLoaded ?
+
+        <Loader />
+
+        :
+
+        ""
+      }
 
 
       <View className="h-[30%] w-[100%] flex justify-center items-center">

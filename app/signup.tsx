@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useFonts } from "expo-font";
 import { useFocusEffect, useRouter } from "expo-router";
 import React, { useCallback, useEffect, useState } from "react";
 import { Keyboard, Text, TextInput, TouchableOpacity, View } from "react-native";
@@ -8,6 +9,7 @@ import Header from "./header";
 import Loader from "./loader";
 import { globalNavBarStatus as setGlobalNavBar } from "./navbar";
 import useSharedStore from "./Repository/store";
+import ActivateFonts from "./Service/ActivateFont";
 import AppDetails from "./Service/AppDetails";
 
 
@@ -19,6 +21,8 @@ interface SignUpScreenProp{
 
 
 const SignUp:React.FC<SignUpScreenProp> =  ({navigation})=>{
+    const [fontsLoaded] = useFonts(ActivateFonts);
+
     const router = useRouter();
 
 
@@ -123,7 +127,7 @@ const SignUp:React.FC<SignUpScreenProp> =  ({navigation})=>{
             <View className="h-[100%] bg-[#F5F5DC] items-center" style={{justifyContent: isInputFocus == true ? "flex-start" : "center", backgroundColor:AppDetails.color.backgroundColor }}>
                 
                 {
-                    isLoader ? 
+                    isLoader || !fontsLoaded ? 
 
                     <Loader />
 

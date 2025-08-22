@@ -52,12 +52,6 @@ const Profile = ()=>{
 
             </TouchableOpacity>
 
-            <TouchableOpacity className="h-20 px-4 mt-4 justify-center">
-                <Text className="font-nunito-bold text-xl color-[#333]">Log Out</Text>
-
-            </TouchableOpacity>
-
-
             
         </View>
     )
