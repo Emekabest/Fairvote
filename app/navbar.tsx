@@ -1,9 +1,11 @@
 import { FontAwesome } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useFonts } from "expo-font";
 import { router } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import useSharedStore from "./Repository/store";
+import ActivateFonts from "./Service/ActivateFont";
 
 
 
@@ -11,6 +13,8 @@ let globalNavBarStatus:any;
 
 
 const NavBar = ()=>{
+    const [fontsLoaded] = useFonts(ActivateFonts);
+
 
     const [navBarStatus, setNavBarStatus] = useState(true)
     globalNavBarStatus = setNavBarStatus
@@ -75,11 +79,23 @@ const NavBar = ()=>{
     
 
     return(
-            <View className="h-28 w-[100%] absolute bottom-0 flex-row z-0" style = {{display:navBarStatus ? "flex" : "none"}}>
+
+        <View>
+
+            {
+                !fontsLoaded ?
+
+                <View>
+
+                </View>
+
+                :
+                
+ <View className="h-28 w-[100%] absolute bottom-0 flex-row z-0" style = {{display:navBarStatus ? "flex" : "none"}}>
                 <View className="h-[100%] w-[33%] items-center justify-center">
                     <TouchableOpacity className="items-center" onPress={()=> handleSelection("home")}>
                         <FontAwesome name="home" size={30} color={activeButton === "home" ? "#C4A484" : "#787878" } />
-                        <Text className="font-nunito text-sm" style = {{color: activeButton === "home" ? "#C4A484" : "#787878"}}>Home</Text>
+                        <Text className="font-nunito-bold text-sm" style = {{color: activeButton === "home" ? "#C4A484" : "#787878"}}>Home</Text>
                     </TouchableOpacity>
                 </View>
                 <View className="h-[100%] w-[34%] items-center">
@@ -97,6 +113,12 @@ const NavBar = ()=>{
 
                 </View>
            </View>
+
+            }
+
+
+          </View>
+           
     )
 
 }

@@ -153,12 +153,11 @@ const Home = () => {
 
                     :
 
-                    ""
+                
 
-                }
+                    <View>
 
-
-            <View className="h-[12%] flex-row">
+                    <View className="h-[12%] flex-row">
                 
                 <View className="h-[100%] w-[70%]  flex-row items-center px-5">
                     <View className="h-16 w-16 bg-[#fff] rounded-full mr-3 items-center justify-center">
@@ -197,6 +196,14 @@ const Home = () => {
                  />
 
             </View>
+
+
+                    </View>
+
+                }
+
+
+
 
 
         </View>

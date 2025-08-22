@@ -24,15 +24,13 @@ export default function RootLayout() {
 
   useEffect(() => {
     const checkIfLaunched = async () => {
-    //  await AsyncStorage.clear()
+     await AsyncStorage.clear()
       try {
 
         const value = await AsyncStorage.getItem('hasLaunched');
         if (value === 'true') {
           router.replace('/home'); // or login, dashboard, etc.
         } else {
-          console.log("Reached ooo")
-
           router.replace('/getstarted');
         }
         

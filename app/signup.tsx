@@ -124,7 +124,7 @@ const SignUp:React.FC<SignUpScreenProp> =  ({navigation})=>{
 
 
     return(
-            <View className="h-[100%] bg-[#F5F5DC] items-center" style={{justifyContent: isInputFocus == true ? "flex-start" : "center", backgroundColor:AppDetails.color.backgroundColor }}>
+            <View className="h-[100%]">
                 
                 {
                     isLoader || !fontsLoaded ? 
@@ -133,10 +133,7 @@ const SignUp:React.FC<SignUpScreenProp> =  ({navigation})=>{
 
                     :
 
-                    ""
-                }
-
-
+                    <View className="h-[100%] bg-[#F5F5DC] items-center" style={{justifyContent: isInputFocus == true ? "flex-start" : "center", backgroundColor:AppDetails.color.backgroundColor }}>
                 <Header />
                   <Text className="color-[#333] text-4xl font-nunito-bold">Create your account</Text>
 
@@ -166,6 +163,12 @@ const SignUp:React.FC<SignUpScreenProp> =  ({navigation})=>{
                 <TouchableOpacity className="rounded-full h-20 w-[95%] bg-[#C4A484] absolute bottom-3 justify-center items-center " onPress={handleSignUp}>
                         <Text className='font-nunito text-2xl'>SignUp</Text>
                 </TouchableOpacity>
+                    </View>
+                }
+
+
+
+
 
             </View>
     )

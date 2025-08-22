@@ -44,9 +44,7 @@ return (
 
         :
 
-        ""
-      }
-
+        <View className='h-[100%] flex justify-center items-center'>
 
       <View className="h-[30%] w-[100%] flex justify-center items-center">
         <Text className="font-nunito-bold text-6xl color-[#333]">Welcome</Text>
@@ -57,6 +55,11 @@ return (
       <TouchableOpacity className="rounded-full h-20 w-[95%] bg-[#C4A484] absolute bottom-3 justify-center items-center " onPress={()=> router.push('./signup')}>
         <Text className='font-nunito text-3xl color-[#333]'>Get Started</Text>
       </TouchableOpacity>
+      </View>
+      }
+
+      
+            
     </View>
   );
 

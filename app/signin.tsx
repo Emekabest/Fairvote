@@ -112,7 +112,7 @@ const SignIn = ()=>{
 
 
     return(
-            <View className="h-[100%] items-center" style={{justifyContent: isInputFocus == true ? "flex-start" : "center", backgroundColor:AppDetails.color.backgroundColor }}>
+            <View className="h-[100%]" >
 
 
                 {
@@ -122,10 +122,8 @@ const SignIn = ()=>{
 
                     :
 
-                    ""
+                    <View className="h-[100%] items-center" style={{justifyContent: isInputFocus == true ? "flex-start" : "center", backgroundColor:AppDetails.color.backgroundColor }}>
 
-                }
-                
                     <Header />
                   <Text className="color-[#333] text-4xl font-nunito-bold">Login</Text>
 
@@ -150,6 +148,12 @@ const SignIn = ()=>{
                 <TouchableOpacity className="rounded-full h-20 w-[95%] bg-[#C4A484] absolute bottom-3 justify-center items-center " onPress={handleSignIn}>
                         <Text className='font-nunito text-2xl'>SignIn</Text>
                 </TouchableOpacity>
+
+                      </View>  
+
+                }
+                
+  
 
             </View>
     )
