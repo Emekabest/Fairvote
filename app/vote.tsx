@@ -6,6 +6,7 @@ import { Dimensions, FlatList, Text, TouchableOpacity, View } from "react-native
 import GetCandidateController from "./Controller/GetCandidateController";
 import GetUsersVote from "./Controller/GetUsersVote";
 
+import * as Clipboard from 'expo-clipboard';
 import ListenToVoteCount from "./Controller/ListenToVoteCount";
 import VoteController from "./Controller/VoteController";
 import Header from "./header";
@@ -14,6 +15,7 @@ import { globalNavBarStatus as setGlobalNavBar } from "./navbar";
 import useSharedStore from "./Repository/store";
 import AppDetails from "./Service/AppDetails";
 import Spinner from "./spinner";
+
 
 
 
@@ -45,6 +47,7 @@ const VoteScreen = ()=>{
         const homeDataStore = useSharedStore((state) => state.homeData);
         const setHomeDataStore = useSharedStore((state) => state.setHomeData);
 
+        const [copyFeedBack, setCopyFeedBack] = useState("")
 
 
 
@@ -139,6 +142,7 @@ const VoteScreen = ()=>{
     const handleCheckedCandidate = (id:String)=>{
 
         setCheckedCandidate(id)
+        
     }
 
 
@@ -183,6 +187,25 @@ const VoteScreen = ()=>{
 
 
 
+    useEffect(()=>{
+
+            setTimeout(()=>{
+
+                setCopyFeedBack("")
+
+        },3000)
+    },[copyFeedBack])
+
+
+    const handleCopyPollCode = ()=>{
+
+        Clipboard.setStringAsync(pollCode.toString())
+
+        setCopyFeedBack("copied")
+
+    }
+
+
 
 
     return(
@@ -207,12 +230,16 @@ const VoteScreen = ()=>{
                     <Text className="font-nunito-bold text-xl color-[#333]">{pollName}</Text>
                 </View>
                 <View className="w-[100%] pl-4 items-start flex-row">
-                    <Text>Pollcode:</Text>
-                    <Text className="font-medium">{pollCode}</Text>
-                    <TouchableOpacity>
-                        <FontAwesome className="pl-4" name="copy" size={18} color="#333" />
+                    <Text className="text-sm">Code:</Text>
+                    <Text className="font-medium text-sm">{pollCode}</Text>
+                    <TouchableOpacity onPress={handleCopyPollCode}>
+                        <FontAwesome className="pl-3" name="copy" size={15} color="#333" />
                     </TouchableOpacity>
+
+                    <Text className="absolute right-3 font-nunito-bold">{copyFeedBack}</Text>
                 </View>
+
+                <View></View>
                 
                 <FlatList className="px-4" style= {{maxHeight:"100%", marginBottom:112}}
                             data={candidates}

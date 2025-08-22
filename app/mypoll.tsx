@@ -42,7 +42,6 @@ const MyPoll = ()=>{
 
             loaderStore.setLoaderStatus(false)
             setLoaderStore({...loaderStore})
-            // setGlobalNavBar(true)
         }
 
         getCreatorPolls()
@@ -74,8 +73,12 @@ const MyPoll = ()=>{
 
                 :
 
-                <View className="pt-20">
-                    <Header />
+                ""
+            }
+            <Header />
+
+
+             <View className="h-[100%] pt-20">
                 
 
                     <FlatList style= {{maxHeight:"100%", marginBottom:112}}
@@ -96,9 +99,6 @@ const MyPoll = ()=>{
                     />
 
                 </View>
-            }
-
-
 
             
         </View>

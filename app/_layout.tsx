@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { router, Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
-import { Dimensions, View } from 'react-native';
+import { Dimensions, SafeAreaView } from 'react-native';
 import 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import '../global.css';
@@ -52,7 +52,7 @@ export default function RootLayout() {
   
 
   return (
-      <View style={{height: usableHeight,paddingTop:insets.top}}>
+      <SafeAreaView style={{height: usableHeight,paddingTop:insets.top, backgroundColor:"#fff"}}>
         <StatusBar style="dark" />
         <Stack initialRouteName={initialRouteName}>
           <Stack.Screen name='home' options={{headerShown:false}} />
@@ -69,6 +69,6 @@ export default function RootLayout() {
         </Stack>
 
         <NavBar />
-      </View>
+      </SafeAreaView>
   );
 }

@@ -4,6 +4,7 @@ import React, { useCallback } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import "../global.css";
 import { globalNavBarStatus as setGlobalNavBar } from "./navbar";
+import ActivateFonts from "./Service/ActivateFont";
 import AppDetails from './Service/AppDetails';
 
 
@@ -15,30 +16,23 @@ interface GetStartedProp{
 
 const GetStarted:React.FC<GetStartedProp> =  ({navigation})=>{
 
-
     useFocusEffect(
         useCallback(() => {
 
             setGlobalNavBar(false)
 
-        }, [])
-
-    );
+  }, []));
 
 
-const router = useRouter();
-
-const [fontsLoaded] = useFonts({
-    'Nunito-Regular': require('../assets/fonts/Nunito-Bold.ttf'),
-    'Nunito-Bold': require('../assets/fonts/Nunito-Bold.ttf'),
-  });
+   const router = useRouter();
   
+      const [fontsLoaded] = useFonts(ActivateFonts);
+      
+      if (!fontsLoaded) {
+      return null; // Or <AppLoading />
+      }
 
-    if (!fontsLoaded) {
-    return null; // Or <AppLoading />
-  }
-
-  
+        
 
 return (
     <View className="h-[100%] flex justify-center items-center"  style={{backgroundColor:AppDetails.color.backgroundColor}}>

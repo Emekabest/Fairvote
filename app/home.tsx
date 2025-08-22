@@ -1,3 +1,4 @@
+import { useFonts } from "expo-font";
 import { router, useFocusEffect } from "expo-router";
 import React, { useCallback, useEffect, useState } from "react";
 import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
@@ -5,12 +6,19 @@ import HomeController from "./Controller/HomeController";
 import Loader from "./loader";
 import { globalNavBarStatus as setGlobalNavBar } from "./navbar";
 import useSharedStore from "./Repository/store";
+import ActivateFonts from "./Service/ActivateFont";
 import Greeting from "./Service/GreetingService";
 
 
 
 
+
 const Home = () => {
+
+    const [fontsLoaded] = useFonts(ActivateFonts);
+
+
+
 
     const homeDataStore = useSharedStore((state) => state.homeData);
     const setHomeDataStore = useSharedStore((state) => state.setHomeData);
@@ -35,6 +43,8 @@ const Home = () => {
     const [polls, setPolls] = useState([{"pollCode": "0", "creator": 0, "pollName": "null"}]);
 
 
+
+
         useFocusEffect(
         useCallback(() => {
               
@@ -42,11 +52,17 @@ const Home = () => {
 
             navBarStore.setActiveButton("home")
             setNavBarStore({...navBarStore})
-
-            console.log("RecentlyVoted::"+recentlyVotedStore)
-
         }, [])
     );
+
+
+
+    // const [fontsLoaded] = useFonts(ActivateFonts);
+    
+      
+    //   if (!fontsLoaded) {
+    //   return null; // Or <AppLoading />
+    //   }
 
 
 
@@ -127,8 +143,10 @@ const Home = () => {
         <View className="h-[100%] bg-[#C4A484]">
 
 
+
+
                 {
-                    isLoader ? 
+                    isLoader || !fontsLoaded ? 
 
                     <Loader />
 
