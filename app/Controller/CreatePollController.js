@@ -25,10 +25,11 @@ const CreatePollController = async ({pollname, code, creator, candidateList})=>{
             await set(pollRef, {
             pollName: pollname,
             pollCreator: creator,
-            candidates: candidatesObj
+            candidates: candidatesObj,
+            isActive:true
             });
 
-
+            
         return "Successful"
         } catch (error) {
             
@@ -39,8 +40,6 @@ const CreatePollController = async ({pollname, code, creator, candidateList})=>{
 
 
     
-
-
 
 
     // try{

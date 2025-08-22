@@ -238,9 +238,8 @@ const VoteScreen = ()=>{
 
                     <Text className="absolute right-3 font-nunito-bold">{copyFeedBack}</Text>
                 </View>
-
-                <View></View>
                 
+
                 <FlatList className="px-4" style= {{maxHeight:"100%", marginBottom:112}}
                             data={candidates}
                             keyExtractor={(candidate) => candidate.id}
@@ -289,7 +288,6 @@ const VoteScreen = ()=>{
                         :
 
                         ""
-
                 }
 
 

@@ -24,7 +24,8 @@ export default function RootLayout() {
 
   useEffect(() => {
     const checkIfLaunched = async () => {
-     await AsyncStorage.clear()
+    //  await AsyncStorage.clear()
+    
       try {
 
         const value = await AsyncStorage.getItem('hasLaunched');

@@ -2,8 +2,8 @@ import { get, ref } from "firebase/database";
 import { db } from "../../firebase.config";
 
 
+
 const GetPollController = async(matricNumber)=>{
-  
 
   try {
   const votesRef = ref(db, "votes");
@@ -31,7 +31,8 @@ const GetPollController = async(matricNumber)=>{
             userPolls.push({
               pollCode,
               pollName:pollData.pollName,
-              pollCreator:pollData.pollCreator
+              pollCreator:pollData.pollCreator,
+              isActive:pollData.isActive
             });
           }
         }
