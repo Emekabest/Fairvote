@@ -119,7 +119,7 @@ const CreatePool = ()=>{
 
 
 
-
+        
         const createPoolFeedback = await CreatePollController({pollname, code:pollCode, creator, candidateList});
 
        if (createPoolFeedback === "Successful"){
@@ -138,8 +138,7 @@ const CreatePool = ()=>{
 
             console.log(createPoolFeedback)
 
-            return;
-            
+            return;   
         }
 
 

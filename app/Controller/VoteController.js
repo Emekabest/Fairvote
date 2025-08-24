@@ -44,23 +44,6 @@ const VoteController = async({pollId, candidateId, userId})=>{
 
 
 
-
-    // console.log(data.candidateId)
-
-
-    // try{
-    //     const URL = "https://r4f936axub.execute-api.us-east-1.amazonaws.com/dev/vote"
-    //     const response = await axios.post(URL, data);
-
-    //     return response.data;
-
-    // }
-    // catch(err){
-    //     return err.code;
-    // }
-
-
-
 }
 
 

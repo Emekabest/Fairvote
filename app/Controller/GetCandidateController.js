@@ -7,7 +7,6 @@ const GetCandidateController = async (pollCode)=>{
     try {
           const candidatesRef =  ref(db, `poll/${pollCode}`);
 
-
           const snapshot = await get(candidatesRef);
 
             if (!snapshot.exists()) {

@@ -5,6 +5,10 @@ const AppDetails = {
     iconColors:"#C4A484",
     backgroundColor:"#fff"
 
+    },
+
+    header:{
+        height:60
     }
 
 

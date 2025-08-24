@@ -1,24 +1,24 @@
 
-import { get, ref } from "firebase/database";
+import { ref, update } from "firebase/database";
 import { db } from "../../firebase.config";
 
 
 const DeactivatePollcontroller = async(pollCode)=>{
+                console.log(typeof(pollCode))
 
-        const pollRef =  ref(db, `poll/${pollCode}`);
-        const snapshot = await get(pollRef);
+        try{
 
+                const pollRef = ref(db, `poll/${pollCode}`);
+                const snapshot = await update(pollRef, { isActive: false });        
 
-         if (!snapshot.exists()){
-                console.log("No Poll found");
+                return {status:true , message:"Successful"}
+        }
+        catch(err){
                 
-                return [];
+                return {status:false , message:"An error occured::"+err}
+
         }
 
-
-        const pollData = snapshot.val();
-
-        console.log(pollData)
 
 }
 

@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage"
-import GetPollController from "./GetPollController"
+import GetPollsController from "./GetPollsController"
 import GetUserController from "./GetUserController"
 
 
@@ -10,7 +10,7 @@ const HomeController = async ()=>{
         const matricNumber = await AsyncStorage.getItem("matric-number")
 
         const user = await GetUserController(matricNumber)
-        const polls = await GetPollController(matricNumber)
+        const polls = await GetPollsController(matricNumber)
         return {
             user,
             polls

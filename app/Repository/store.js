@@ -19,18 +19,19 @@ const useSharedStore = create((set) => ({
 
   },
 
-  recentlyVoted:false,
-
   homeData:HomeService,
+
+  confirmation:ConfirmationService,
 
   
   setValue: (newValue) => set({ value: newValue }),
 
   setNavBar:(newNavBar) => set({navBar: newNavBar}),
 
-  setRecentlyVoted: (newRecentlyVoted) => set({recentlyVoted: newRecentlyVoted}),
+  setHomeData:(newHomeData)=> set({homeData: newHomeData}),
 
-  setHomeData:(newHomeData)=> set({homeData: newHomeData})
+  setConfirmation:(newConfirmation)=> set({confirmation: newConfirmation})
+
 }));
 
 

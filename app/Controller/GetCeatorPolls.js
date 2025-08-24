@@ -17,6 +17,7 @@ const GetCreatorPolls = async(matricNumber)=>{
       const pollsArray = Object.entries(pollsData).map(([pollId, pollDetails]) => ({
         pollCode:pollId,
         pollName: pollDetails.pollName,
+        pollCreator: pollDetails.pollCreator
       }));
 
       return pollsArray;

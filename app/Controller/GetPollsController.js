@@ -3,7 +3,7 @@ import { db } from "../../firebase.config";
 
 
 
-const GetPollController = async(matricNumber)=>{
+const GetPollsController = async(matricNumber)=>{
 
   try {
   const votesRef = ref(db, "votes");
@@ -53,4 +53,4 @@ const GetPollController = async(matricNumber)=>{
 
 
 
-export default GetPollController;
+export default GetPollsController;

@@ -40,8 +40,8 @@ const Home = () => {
     const [isLoader, setIsLoader] = useState(false);    
 
 
-    const [user, setUser] = useState({"matricNumber": 0, "username": "null"})
-    const [polls, setPolls] = useState([{"pollCode": "0", "creator": 0, "pollName": "null"}]);
+    const [user, setUser] = useState({"matricNumber": 0, "username": "null"});
+    const [polls, setPolls] = useState([{"pollCode": "0", "pollCreator": 0, "pollName": "null"}]);
 
 
 
@@ -64,7 +64,6 @@ const Home = () => {
     //   if (!fontsLoaded) {
     //   return null; // Or <AppLoading />
     //   }
-
 
 
 
@@ -117,8 +116,6 @@ const Home = () => {
         
     },[loaderStore.getLoaderStatus()])
             
-
-
 
 
     useEffect(()=>{
@@ -183,7 +180,7 @@ const Home = () => {
                             keyExtractor={(poll) => poll.pollCode}
                             renderItem={({ item }) => (
 
-                                <TouchableOpacity onPress={()=> router.push({pathname:"/vote", params:{pollCode:item.pollCode, pollName:item.pollName}})} className="h-20 w-[100%] px-4 flex-row">
+                                <TouchableOpacity onPress={()=> router.push({pathname:"/vote", params:{pollCode:item.pollCode, pollCreator:item.pollCreator, pollName:item.pollName}})} className="h-20 w-[100%] px-4 flex-row">
                                     <View className="w-[70%] h-[100%] justify-center">
                                         <Text className="font-nunito-bold text-lg color-[#333]">{item.pollName}</Text>
                                     </View>
