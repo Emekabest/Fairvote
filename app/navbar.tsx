@@ -1,5 +1,4 @@
 import { FontAwesome } from "@expo/vector-icons";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFonts } from "expo-font";
 import { router } from "expo-router";
 import React, { useEffect, useState } from "react";
@@ -31,21 +30,21 @@ const NavBar = ()=>{
     },[navBarStore.getActiveButton()])
 
 
-    useEffect(()=>{    
-        const checkIfLaunched = async ()=>{
-            const value = await AsyncStorage.getItem('hasLaunched');
+    // useEffect(()=>{    
+    //     const checkIfLaunched = async ()=>{
+    //         const value = await AsyncStorage.getItem('hasLaunched');
             
 
-            if (value === 'true') {
-                setNavBarStatus(true)
+    //         if (value === 'true') {
+    //             setNavBarStatus(true)
 
-            } else {
-                setNavBarStatus(false)
-            }
+    //         } else {
+    //             setNavBarStatus(false)
+    //         }
 
-        }
-        checkIfLaunched();
-    },[])
+    //     }
+    //     checkIfLaunched();
+    // },[])
 
 
     const handleSelection = (route:string)=>{
