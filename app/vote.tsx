@@ -20,7 +20,6 @@ import GetPollCandidatesWinner from "./Service/GetPollCandidatesWinner";
 
 
 
-
 const VoteScreen = ()=>{
     const { height } = Dimensions.get("window");
     const { pollCode, pollName, pollCreator } = useLocalSearchParams();
@@ -49,8 +48,11 @@ const VoteScreen = ()=>{
         const setLoaderStore = useSharedStore((state) => state.setValue);
 
 
-        const recentlyVotedStore = useSharedStore((state)=> state.recentlyVoted)
-        const setRecentlyVoted_Store = useSharedStore((state)=> state.setRecentlyVoted)
+        const confirmation_store = useSharedStore((state)=> state.confirmation)
+        const setConfirmation_store = useSharedStore((state)=> state.setConfirmation)
+
+        const [isConfirmation, setIsConfirmation] = useState(false)
+
 
         const homeDataStore = useSharedStore((state) => state.homeData);
         const setHomeDataStore = useSharedStore((state) => state.setHomeData);
@@ -245,27 +247,63 @@ const VoteScreen = ()=>{
     },[pollCode])
 
 
+
+
+
+
+
+
+
     const handleDeactivateVote = async()=>{
 
-        const response = await DeactivatePollController(pollCode)
-
-        if (response.status){
-            setPollActive(false)
+        if (!pollActive){
+            return;
         }
+        const activateConfirmation = async()=>{
 
+            const response = await DeactivatePollController(pollCode)
+
+            if (response.status){
+                setPollActive(false)
+
+            }
+        }
+        
+        setIsConfirmation(true)
+        confirmation_store.setStatus(true)
+
+        confirmation_store.setYesButtonFunction(activateConfirmation)
+
+        setConfirmation_store({...confirmation_store})
     }
 
 
     useEffect(()=>{
-        const getPollCandidateWinner = ()=>{
 
+        if (!confirmation_store.getStatus()){
+            setIsConfirmation(false)
+
+        }
+
+    },[confirmation_store.getStatus()])
+
+
+
+
+
+
+    
+    
+
+    useEffect(()=>{
+        const getPollCandidateWinner = ()=>{
             const result = GetPollCandidatesWinner(candidates, voteCounts)
 
             if (result.winners.length === 1){
 
                 setPollWinner(result.winners[0])
             }
-
+            
         }
         getPollCandidateWinner()
     },[candidates, voteCounts])
@@ -274,6 +312,7 @@ const VoteScreen = ()=>{
 
     return(
         <View style={{height:"100%"}}>
+
 
             {
                 isLoader ?
@@ -286,8 +325,18 @@ const VoteScreen = ()=>{
              
             }
 
-            <Confirmation />
 
+            {
+
+                isConfirmation ?
+
+                     <Confirmation />
+
+                :
+                    ""
+
+            }
+            
 
                <View>
 

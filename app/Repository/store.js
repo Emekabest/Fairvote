@@ -1,10 +1,11 @@
 import { create } from 'zustand';
+import ConfirmationService from '../Service/ConfirmationService';
 import HomeService from "../Service/HomeService";
 import LoaderService from '../Service/LoaderService';
 
 
 const useSharedStore = create((set) => ({
-  value: LoaderService, // shared data
+  value: LoaderService,
   navBar:{
     activeButton:"",
 

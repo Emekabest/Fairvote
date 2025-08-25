@@ -29,9 +29,18 @@ export default function RootLayout() {
       try {
 
         const value = await AsyncStorage.getItem('hasLaunched');
-        if (value === 'true') {
+        const isUser = await AsyncStorage.getItem("matric-number");
+        console.log("ahah")
+
+        if (value === 'true' && isUser){
           router.replace('/home'); // or login, dashboard, etc.
-        } else {
+          console.log(isUser)
+        }
+        else if(!isUser){
+            router.replace('/signin'); // or login, dashboard, etc. 
+        }
+        
+        else {
           router.replace('/getstarted');
         }
         

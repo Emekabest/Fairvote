@@ -2,37 +2,42 @@
 
 
 const LoaderService = {
+
     loaderStatus:false,
     feedbackMode:false,
     feedbackMessage:"",
     returnBackPage:"",
+       
 
-    
     setLoaderStatus(isloader){
-        this.loaderStatus = isloader
+        this.loaderStatus = isloader;
+
     },
+
     
     getLoaderStatus(){
         return this.loaderStatus;
+
     },
 
+
     setFeedBackMode(isFeedBackMode){
-        this.feedbackMode = isFeedBackMode
+        this.feedbackMode = isFeedBackMode;
+
     },
 
     getFeedBackMode(){
-        
         return this.feedbackMode;
+        
     },
 
 
     setFeedBackMessage(isFeedBackMessage){
-        this.feedbackMessage = isFeedBackMessage
+        this.feedbackMessage = isFeedBackMessage;
     },
 
     getFeedBackMessage(){
-
-        return this.feedbackMessage
+        return this.feedbackMessage;
     },
     
 
