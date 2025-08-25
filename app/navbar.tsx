@@ -30,23 +30,6 @@ const NavBar = ()=>{
     },[navBarStore.getActiveButton()])
 
 
-    // useEffect(()=>{    
-    //     const checkIfLaunched = async ()=>{
-    //         const value = await AsyncStorage.getItem('hasLaunched');
-            
-
-    //         if (value === 'true') {
-    //             setNavBarStatus(true)
-
-    //         } else {
-    //             setNavBarStatus(false)
-    //         }
-
-    //     }
-    //     checkIfLaunched();
-    // },[])
-
-
     const handleSelection = (route:string)=>{
 
         if (route === "home" && activeButton != "home"){
@@ -90,22 +73,22 @@ const NavBar = ()=>{
 
                 :
                 
- <View className="h-28 w-[100%] absolute bottom-0 flex-row z-0" style = {{display:navBarStatus ? "flex" : "none"}}>
+            <View className="h-28 w-[100%] absolute bottom-0 flex-row z-0" style = {{display:navBarStatus ? "flex" : "none"}}>
                 <View className="h-[100%] w-[33%] items-center justify-center">
-                    <TouchableOpacity className="items-center" onPress={()=> handleSelection("home")}>
+                    <TouchableOpacity className="items-center" activeOpacity={1} onPress={()=> handleSelection("home")}>
                         <FontAwesome name="home" size={30} color={activeButton === "home" ? "#C4A484" : "#787878" } />
                         <Text className="font-nunito-bold text-sm" style = {{color: activeButton === "home" ? "#C4A484" : "#787878"}}>Home</Text>
                     </TouchableOpacity>
                 </View>
                 <View className="h-[100%] w-[34%] items-center">
-                    <TouchableOpacity className="h-24 w-24 bg-[#C4A484] rounded-full items-center justify-center" onPress={()=> handleSelection("poll")}>
+                    <TouchableOpacity activeOpacity={1} className="h-24 w-24 bg-[#C4A484] rounded-full items-center justify-center" onPress={()=> handleSelection("poll")}>
                         <FontAwesome name="plus" size={25} color="#fff"/>
                     </TouchableOpacity>
                 </View>
                 <View className="h-[100%] w-[33%] items-center justify-center">
 
 
-                    <TouchableOpacity  className="items-center" onPress={()=> handleSelection("profile")}>
+                    <TouchableOpacity activeOpacity={1}  className="items-center" onPress={()=> handleSelection("profile")}>
                         <FontAwesome name="user" size={30} color={activeButton === "profile" ? "#C4A484" : "#787878"  } />
                         <Text className="font-nunito text-sm" style={{color:activeButton === "profile" ? "#C4A484" : "#787878"  }}>Profile</Text>
                     </TouchableOpacity>

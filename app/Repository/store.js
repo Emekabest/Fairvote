@@ -11,7 +11,6 @@ const useSharedStore = create((set) => ({
 
     setActiveButton(activeButtonName){
       this.activeButton = activeButtonName;
-      console.log("Reached")
 
     },
     getActiveButton(){

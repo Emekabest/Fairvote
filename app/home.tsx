@@ -161,12 +161,14 @@ const Home = () => {
                         <FontAwesome name="user" size={50} color="#b3b3b3" />
                     </View>
                     <View>
-                        <Text className="font-nunito text-sm">{Greeting()}</Text>
-                        <Text className="font-nunito-bold text-2xl">{user.username}</Text>
+                        <Text className="font-nunito text-sm color-[#141414]">{Greeting()}</Text>
+                        <Text className="font-nunito-bold text-2xl color-[#141414]">{user.username}</Text>
                     </View>
                 </View>
                 <View className="h-[100%] w-[30%] flex-row justify-end items-center">
-                    <View className="h-10 w-10 bg-gray-300 rounded-full mr-3"></View>
+                    <View className="h-10 w-10 rounded-full mr-3 items-center justify-center">
+                        <FontAwesome name="bell-o" size={24} color="#333"/>
+                    </View>
                 </View> 
             </View>
 
