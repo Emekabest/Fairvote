@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { router, Stack } from 'expo-router';
+import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import { Dimensions, SafeAreaView } from 'react-native';
@@ -8,9 +9,22 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import '../global.css';
 import NavBar from "./navbar";
 
+// keep splash visible while loading
+SplashScreen.preventAutoHideAsync();
 
 
 export default function RootLayout() {
+
+
+    useEffect(() => {
+    const prepare = async () => {
+      // ⏳ wait for 2 seconds before hiding
+      await new Promise(resolve => setTimeout(resolve, 5000));
+      await SplashScreen.hideAsync();
+    };
+
+    prepare();
+  }, []);
 
   
 
