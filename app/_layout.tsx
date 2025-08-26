@@ -86,6 +86,8 @@ export default function RootLayout() {
           <Stack.Screen name='vote' options={{headerShown:false}} />
           <Stack.Screen name='profile' options={{headerShown:false}} />
           <Stack.Screen name='mypoll' options={{headerShown:false}} />
+          <Stack.Screen name='chart' options={{headerShown:false}} />
+
 
         </Stack>
 

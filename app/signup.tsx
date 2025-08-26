@@ -142,7 +142,7 @@ const SignUp:React.FC<SignUpScreenProp> =  ({navigation})=>{
                         <TextInput  placeholder="Username" placeholderTextColor="gray" value = {username} onChangeText={setUsername} className="color-[#333] w-[100%]  rounded-3xl h-[70%] text-xl px-3"/>
                     </View>
                     <View className=" w-[90%] h-24">
-                        <TextInput  placeholder="Nin" placeholderTextColor="gray" keyboardType="numeric" value={matricNumber}  onChangeText={setMatricNumber}  className="color-[#333] w-[100%]  rounded-3xl h-[70%] text-xl px-3"/>
+                        <TextInput  placeholder="Vin" placeholderTextColor="gray" keyboardType="numeric" value={matricNumber}  onChangeText={setMatricNumber}  className="color-[#333] w-[100%]  rounded-3xl h-[70%] text-xl px-3"/>
                     </View>
                     <View className=" w-[90%] h-24">
                         <TextInput placeholder="Password" placeholderTextColor="gray" secureTextEntry={!passwordVisible} value={password} onChangeText={setPassword} className="color-[#333] w-[100%]  rounded-3xl h-[70%] text-xl px-3"/>

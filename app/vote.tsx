@@ -1,7 +1,7 @@
 import { FontAwesome } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Clipboard from 'expo-clipboard';
-import { useFocusEffect, useLocalSearchParams } from "expo-router";
+import { Link, useFocusEffect, useLocalSearchParams } from "expo-router";
 import React, { useCallback, useEffect, useState } from "react";
 import { Dimensions, FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 import Confirmation from "./confirmation";
@@ -17,7 +17,6 @@ import { globalNavBarStatus as setGlobalNavBar } from "./navbar";
 import useSharedStore from "./Repository/store";
 import AppDetails from "./Service/AppDetails";
 import GetPollCandidatesWinner from "./Service/GetPollCandidatesWinner";
-
 
 
 const VoteScreen = ()=>{
@@ -39,8 +38,6 @@ const VoteScreen = ()=>{
         const [voteCounts, setVoteCounts] = useState<any>({});
 
         const [pollActive, setPollActive] = useState(false)
-
-
 
 
 
@@ -137,8 +134,8 @@ const VoteScreen = ()=>{
             const pollData:any = await GetCandidateController(pollCode);
             if (pollData.pollCode){
                 setCandidates(pollData.candidates)
-
             }
+            
             else if (pollData === "ERR_NETWORK"){
                 loaderStore.setFeedBackMode(true)
                 loaderStore.setFeedBackMessage("A Network Error Occured, Try Again!")
@@ -309,7 +306,6 @@ const VoteScreen = ()=>{
         getPollCandidateWinner()
     },[candidates, voteCounts])
 
-
     return(
         <View style={{height:"100%"}}>
 
@@ -344,13 +340,27 @@ const VoteScreen = ()=>{
 
                     <View className="" style={{height:height - AppDetails.header.height, marginTop:AppDetails.header.height}}>
 
-                        <View className="h-[15%]">
+                        <View className="h-[15%] px-4">
 
-                            <View className="h-20 justify-center flex-row items-center">
-                                <View className="h-4 w-4 mr-3 rounded-lg" style={{backgroundColor:pollActive ? "#64ED5A" : "#BFBFBF" }} />
-                                <Text className="font-nunito-bold text-xl color-[#333]">{pollName}</Text>
+                            <View className="h-20 flex-row items-center justify-between">
+                                <View className="flex-row items-center">
+                                    <View className="h-4 w-4 mr-3 rounded-lg" style={{backgroundColor:pollActive ? "#64ED5A" : "#BFBFBF" }} />
+                                    <Text className="font-nunito-bold text-xl color-[#333]">{pollName}</Text>
+                                </View>
+
+                                <Link
+                                    href={{
+                                        pathname: "/chart",
+                                        params: { pollCode: pollCode, pollName: pollName }
+                                    }}
+                                    asChild
+                                >
+                                    <TouchableOpacity className="bg-[#C4A484] py-2 px-4 rounded-lg">
+                                        <Text className="font-nunito-bold text-[#333]">View Chart</Text>
+                                    </TouchableOpacity>
+                                </Link>
                             </View>
-                            <View className="w-[100%] pl-4 items-start flex-row">
+                            <View className="w-[100%] items-start flex-row">
                                 <Text className="text-sm">Code:</Text>
                                 <Text className="font-medium text-sm">{pollCode}</Text>
                                 <TouchableOpacity onPress={handleCopyPollCode}>
@@ -410,17 +420,15 @@ const VoteScreen = ()=>{
                                                             <FontAwesome name="user-circle" size={80} color="#fff" />
 
                                                         }
-
-                                                        
                                                      </View>
 
 
                                                      <View className="pl-4">
                                                         <Text className="font-nunito-bold text-lg color-[#333]">{item.firstname} {item.lastname}</Text>
                                                         <Text>Votes: {voteCounts[item.id] ?? 0}</Text>
-                                                    </View>
-                                                   
+                                                     </View>
                                                 </View>
+
 
 
                                                 <View  className="w-[30%]  h-[100%] justify-center items-end ">

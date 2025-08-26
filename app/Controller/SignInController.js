@@ -18,7 +18,7 @@ const SignInController = async(matricNumber, password)=>{
         if (!snapshot.exists()) {
 
 
-          return "Incorrect Nin or password";
+          return "Incorrect Vin or password";
         }
 
 
@@ -30,7 +30,7 @@ const SignInController = async(matricNumber, password)=>{
         } else {
           
 
-          return "Incorrect Nin or password";
+          return "Incorrect Vin or password";
         }
       } catch (error) {
         
