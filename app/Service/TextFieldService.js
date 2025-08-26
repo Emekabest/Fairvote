@@ -11,7 +11,7 @@ const TextFieldService = (fieldsToValidate, form)=>{
 
       matricNumber: {
         regex: /^\d{11}$/,
-        message: 'Matric no: must be 11 digits',
+        message: 'Nin must be 11 digits',
       },
 
       password: {

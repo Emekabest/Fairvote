@@ -26,7 +26,7 @@ const SignUpController = async(username, matricNumber, password)=>{
 
             if (snapshot.exists()) {
 
-                return "Matric number already exist"
+                return "Nin already exist"
 
             }
 

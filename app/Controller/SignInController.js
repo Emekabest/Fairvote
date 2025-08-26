@@ -4,8 +4,6 @@ import { db } from "../../firebase.config";
 const SignInController = async(matricNumber, password)=>{
 
     if (matricNumber.trim() == "" || password.trim() == ""){
-
-        console.log("Please fill all fields")
         
         return "Please fill all fields"
     }
@@ -20,7 +18,7 @@ const SignInController = async(matricNumber, password)=>{
         if (!snapshot.exists()) {
 
 
-          return "Incorrect matric number or password";
+          return "Incorrect Nin or password";
         }
 
 
@@ -32,7 +30,7 @@ const SignInController = async(matricNumber, password)=>{
         } else {
           
 
-          return "Incorrect matric number or password";
+          return "Incorrect Nin or password";
         }
       } catch (error) {
         
