@@ -116,6 +116,17 @@ const VoteScreen = ()=>{
 
 
 
+        const getSinglePoll = async()=>{
+            const response = await GetSinglePollController(pollCode)
+            
+            if(response?.status){
+                
+                setPollActive(response.data.isActive)
+            }
+
+
+        }
+
     
 
     useEffect(()=>{
@@ -140,6 +151,7 @@ const VoteScreen = ()=>{
             }
 
 
+            await getSinglePoll()
 
             loaderStore.setLoaderStatus(false)
             setLoaderStore({...loaderStore})
@@ -147,7 +159,7 @@ const VoteScreen = ()=>{
 
 
         getCandidateController()
-    },[])
+    },[pollCode])
     
 
 
@@ -231,20 +243,9 @@ const VoteScreen = ()=>{
 
 
 
-    useEffect(()=>{
-        const getSinglePoll = async()=>{
-              const response = await GetSinglePollController(pollCode)
-              
-              if(response?.status){
-                    
-                    setPollActive(response.data.isActive)
-              }
+ 
 
-
-        }
-
-        getSinglePoll()
-    },[pollCode])
+        
 
 
 
