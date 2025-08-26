@@ -3,7 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Clipboard from 'expo-clipboard';
 import { useFocusEffect, useLocalSearchParams } from "expo-router";
 import React, { useCallback, useEffect, useState } from "react";
-import { Dimensions, FlatList, Text, TouchableOpacity, View } from "react-native";
+import { Dimensions, FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 import Confirmation from "./confirmation";
 import DeactivatePollController from "./Controller/DeactivatePollController";
 import GetCandidateController from "./Controller/GetCandidateController";
@@ -27,7 +27,7 @@ const VoteScreen = ()=>{
         
         const [isCreator, setIsCreator] = useState(false);
 
-        const [candidates, setCandidates] = useState<any>([{"firstName": "null", "id": 0, "lastname": "null ", "pollCode": "0", "voteCount": 0}])
+        const [candidates, setCandidates] = useState<any>([{"firstName": "null", "id": 0, "lastname": "null ", "pollCode": "0", "voteCount": 0, "image": "null"}])
 
         const [checkedCandidate, setCheckedCandidate] = useState<String>("");
         const [pollWinner, setPollWinner] = useState({firstname:"", id:"", lastname:""});
@@ -309,7 +309,6 @@ const VoteScreen = ()=>{
     },[candidates, voteCounts])
 
 
-
     return(
         <View style={{height:"100%"}}>
 
@@ -395,10 +394,34 @@ const VoteScreen = ()=>{
                                         renderItem={({ item }) => (
 
                                             <View className="h-52 mt-4 rounded-2xl bg-[#cece9f] w-[100%] px-4 flex-row">
-                                                <View className="w-[70%] h-[100%] justify-center">
-                                                    <Text className="font-nunito-bold text-lg color-[#333]">{item.firstname} {item.lastname}</Text>
-                                                    <Text>Votes: {voteCounts[item.id] ?? 0}</Text>
+                                                <View className="w-[70%] h-[100%] flex-row items-center">
+                                                    <View className="h-24 w-24 rounded-2xl overflow-hidden">
+                                                        {
+                                                            item.image ?
+
+                                                            <Image
+                                                                source={{ uri: item.image }}
+                                                                style={{ width: "100%", height: "100%"}}
+                                                                /> 
+
+                                                        :
+
+                                                            <FontAwesome name="user-circle" size={80} color="#b3b3b3" />
+
+                                                        }
+
+                                                        
+                                                     </View>
+
+
+                                                     <View className="pl-4">
+                                                        <Text className="font-nunito-bold text-lg color-[#333]">{item.firstname} {item.lastname}</Text>
+                                                        <Text>Votes: {voteCounts[item.id] ?? 0}</Text>
+                                                    </View>
+                                                   
                                                 </View>
+
+
                                                 <View  className="w-[30%]  h-[100%] justify-center items-end ">
 
 

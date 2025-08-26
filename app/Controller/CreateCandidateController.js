@@ -11,7 +11,7 @@ const CreateCandidateController = async (pollCode, candidateList)=>{
     const newCandidateList = candidateList.map(candidate => ({
         firstname: candidate.candidateFirstName,
         lastname: candidate.candidateLastName,
-        pollCode
+        pollCode,
     }));
 
 

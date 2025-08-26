@@ -11,7 +11,8 @@ const CreatePollController = async ({pollname, code, creator, candidateList})=>{
     if (key) {
       candidatesObj[key] = {
         firstname: candidate.candidateFirstName,
-        lastname: candidate.candidateLastName
+        lastname: candidate.candidateLastName,
+        image: candidate.candidateImage || null,
       };
     }
     });
@@ -35,27 +36,7 @@ const CreatePollController = async ({pollname, code, creator, candidateList})=>{
             
             return error.code
         }
-      
-
-
-
     
-
-
-    // try{
-    //     const URL = "https://r4f936axub.execute-api.us-east-1.amazonaws.com/dev/createpoll"
-    //     const response = await axios.post(URL, {name:pollname, code, creator});
-
-
-    //     return response.data;
-
-    // }
-    // catch(err){
-    //     return err.code;
-    // }
-
-
-
 
 }
 
