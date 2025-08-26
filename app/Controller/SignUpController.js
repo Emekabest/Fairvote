@@ -39,7 +39,6 @@ const SignUpController = async(username, matricNumber, password)=>{
               return "Successful"
 
       } catch (error) {
-        console.error("Error registering user:", error);
 
         return error.code
       }
