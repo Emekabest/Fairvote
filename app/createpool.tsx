@@ -216,7 +216,7 @@ const CreatePool = ()=>{
             <View>
                 <Header />
                 <View className="mt-20" style={{backgroundColor:AppDetails.color.backgroundColor, height:height - AppDetails.header.height, marginTop:AppDetails.header.height}}>
-                    <View className="h-[40%] px-4 mb-4" >
+                    <View className="h-[40%] px-4" >
 
 
                         <View className="">
@@ -258,7 +258,7 @@ const CreatePool = ()=>{
 
                     
 
-                    <View className="h-[60%] px-4">
+                    <View className="h-[60%] px-4 pt-4">
 
 
                             <FlatList
