@@ -407,7 +407,7 @@ const VoteScreen = ()=>{
 
                                                         :
 
-                                                            <FontAwesome name="user-circle" size={80} color="#b3b3b3" />
+                                                            <FontAwesome name="user-circle" size={80} color="#fff" />
 
                                                         }
 

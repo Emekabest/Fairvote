@@ -100,9 +100,9 @@ const CreatePool = ()=>{
     const handleCreatePoll = async ()=>{
         
 
-        if (candidateList.length === 0 || pollname.trim() === ""){
+        if (candidateList.length < 2 || pollname.trim() === ""){
 
-            setFormFeedBackMsg("Please ensure you have added a candidate and a poll name")
+            setFormFeedBackMsg("Ensure you have more than 1 candidate and a poll name")
             
             setTimeout(()=>{
                 setFormFeedBackMsg("")
