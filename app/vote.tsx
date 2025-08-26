@@ -448,7 +448,6 @@ const VoteScreen = ()=>{
                                                             </View>
                                                         }
 
-                                                
                                                 </View>
                                             </View>
                                         )}
