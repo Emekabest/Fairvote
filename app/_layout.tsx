@@ -49,7 +49,7 @@ export default function RootLayout() {
 
 
         if (isLaunched === 'true' && isUser){
-          router.replace('/home'); // or login, dashboard, etc.
+          router.replace('/category'); // or login, dashboard, etc.
         }
         else if(isLaunched==="true" && !isUser){
             router.replace('/signin'); // or login, dashboard, etc. 
@@ -78,6 +78,7 @@ export default function RootLayout() {
       <SafeAreaView style={{height: usableHeight,paddingTop:insets.top, backgroundColor:"#fff"}}>
         <StatusBar style="dark" />
         <Stack initialRouteName={initialRouteName}>
+          <Stack.Screen name='category' options={{headerShown:false}} />
           <Stack.Screen name='home' options={{headerShown:false}} />
           <Stack.Screen name="getstarted" options={{ headerShown: false }} />
           <Stack.Screen name="signup" options={{ headerShown: false }} />
@@ -89,7 +90,6 @@ export default function RootLayout() {
           <Stack.Screen name='profile' options={{headerShown:false}} />
           <Stack.Screen name='mypoll' options={{headerShown:false}} />
           <Stack.Screen name='chart' options={{headerShown:false}} />
-
 
         </Stack>
 

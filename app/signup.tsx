@@ -92,8 +92,8 @@ const SignUp:React.FC<SignUpScreenProp> =  ({navigation})=>{
            await AsyncStorage.setItem("hasLaunched", "true")
            await AsyncStorage.setItem("matric-number", matricNumber.trim());
         
-         router.push("/home")
-        //  router.dismissAll()   
+         router.push("/category")
+         router.dismissAll()   
     }
       else if (message === "ERR_BAD_RESPONSE"){
             console.log("Server Error")
@@ -135,19 +135,20 @@ const SignUp:React.FC<SignUpScreenProp> =  ({navigation})=>{
 
                     <View className="h-[100%] bg-[#F5F5DC] items-center" style={{justifyContent: isInputFocus == true ? "flex-start" : "center", backgroundColor:AppDetails.color.backgroundColor }}>
                 <Header />
-                  <Image source={require("../assets/images/icon.png")} className="w-24 h-24 mb-5" />
+                  <Image source={require("../assets/images/icon.png")} className="w-24 h-24" />
+                  <Text className="font-nunito-bold text-xl text-[#141414] mt-2 mb-5">INEC</Text>
 
-                  <Text className="color-[#333] text-4xl font-nunito-bold">Create your account</Text>
+                  <Text className="text-[#333] text-4xl font-nunito-bold">Create your account</Text>
 
                   <View className="h-[50%] w-[90%] rounded-3xl flex justify-center items-center">
-                    <View className=" w-[90%] h-24">
-                        <TextInput  placeholder="Username" placeholderTextColor="gray" value = {username} onChangeText={setUsername} className="color-[#333] w-[100%]  rounded-3xl h-[70%] text-xl px-3"/>
+                    <View className="w-[90%] h-24">
+                        <TextInput  placeholder="Username" placeholderTextColor="gray" value = {username} onChangeText={setUsername} className="bg-white border border-gray-300 text-[#333] w-[100%] rounded-3xl h-[70%] text-xl px-3"/>
                     </View>
-                    <View className=" w-[90%] h-24">
-                        <TextInput  placeholder="Vin" placeholderTextColor="gray" keyboardType="numeric" value={matricNumber}  onChangeText={setMatricNumber}  className="color-[#333] w-[100%]  rounded-3xl h-[70%] text-xl px-3"/>
+                    <View className="w-[90%] h-24">
+                        <TextInput  placeholder="Matric Number" placeholderTextColor="gray" keyboardType="default" value={matricNumber}  onChangeText={setMatricNumber}  className="bg-white border border-gray-300 text-[#333] w-[100%] rounded-3xl h-[70%] text-xl px-3"/>
                     </View>
-                    <View className=" w-[90%] h-24">
-                        <TextInput placeholder="Password" placeholderTextColor="gray" secureTextEntry={!passwordVisible} value={password} onChangeText={setPassword} className="color-[#333] w-[100%]  rounded-3xl h-[70%] text-xl px-3"/>
+                    <View className="w-[90%] h-24">
+                        <TextInput placeholder="Password" placeholderTextColor="gray" secureTextEntry={!passwordVisible} value={password} onChangeText={setPassword} className="bg-white border border-gray-300 text-[#333] w-[100%] rounded-3xl h-[70%] text-xl px-3"/>
                     </View>
 
                     
@@ -155,8 +156,8 @@ const SignUp:React.FC<SignUpScreenProp> =  ({navigation})=>{
                     <View className="items-center">
                         <Text className={formFeedback != "Successful" ? "text-red-800" : "text-green-600"}>{formFeedback}</Text>
                         <Text>Already a member?</Text>
-                        <TouchableOpacity onPress={()=> router.push("./signin")}>
-                            <Text className="color-black font-bold">Sign in</Text>
+                        <TouchableOpacity onPress={()=> router.push("/signin")}>
+                            <Text className="text-black font-bold">Sign in</Text>
                         </TouchableOpacity>
                     </View>
                   </View>

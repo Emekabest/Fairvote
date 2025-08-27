@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router, useFocusEffect } from "expo-router";
 import React, { useCallback, useEffect, useState } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import Confirmation from "./confirmation";
 import { globalNavBarStatus as setGlobalNavBar } from "./navbar";
 import useSharedStore from "./Repository/store";
@@ -81,8 +81,8 @@ const Profile = ()=>{
 
             }
 
-            <View className="h-52 bg-[#C4A484]">
-                
+            <View className="h-52 bg-[#C4A484] justify-center items-center">
+                <Image source={require("../assets/images/icon.png")} className="w-24 h-24 rounded-full" />
             </View>
 
             <TouchableOpacity className="h-20 px-4 mt-4 justify-center">
@@ -91,21 +91,17 @@ const Profile = ()=>{
             </TouchableOpacity>
 
 
-            <TouchableOpacity className="h-20 px-4 mt-4 justify-center" onPress={()=> router.push("/mypoll")}>
+            {/* <TouchableOpacity className="h-20 px-4 mt-4 justify-center" onPress={()=> router.push("/mypoll")}>
                 <Text className="font-nunito-bold text-xl color-[#333]">My Polls</Text>
 
-            </TouchableOpacity>
+            </TouchableOpacity> */}
 
-            <TouchableOpacity className="h-20 px-4 mt-4 justify-center">
-                <Text className="font-nunito-bold text-xl color-[#333]">About</Text>
-
-            </TouchableOpacity>
-
-
-            <TouchableOpacity className="h-20 px-4 mt-4 justify-center">
-                <Text className="font-nunito-bold text-xl color-[#333]">Terms and Conditions</Text>
+            <TouchableOpacity className="h-20 px-4 mt-4 justify-center" onPress={()=> router.push("/category")}>
+                <Text className="font-nunito-bold text-xl color-[#333]">Category</Text>
 
             </TouchableOpacity>
+
+     
 
             <TouchableOpacity activeOpacity={1} className="h-20 px-4 mt-4 justify-center" onPress={handleLogOut}>
                 <Text className="font-nunito-bold text-xl color-[#333]">Log out</Text>

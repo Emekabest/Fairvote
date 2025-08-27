@@ -150,7 +150,7 @@ const Home = () => {
 
                     :
 
-                
+                    
 
                     <View>
 
@@ -164,7 +164,7 @@ const Home = () => {
                             </View>
                         </View>
 
-                        {/* Center - Absolutely Positioned */}
+
                         <View className="absolute top-0 bottom-0 left-0 right-0 justify-end items-center pointer-events-none pb-2">
                             <Text className="font-nunito-bold text-lg color-[#141414]">INEC</Text>
                         </View>
@@ -180,9 +180,9 @@ const Home = () => {
 
                     <Text className="pt-4 text-center font-bold text-lg">{polls.length < 2 ? "Poll" : "Polls"}: 1</Text>
 
-                        <TouchableOpacity onPress={()=> router.push({pathname:"/vote", params:{pollCode:"1756212994383", pollCreator:"", pollName:"Presidential Election 2027"}})} className="h-20 w-[100%] px-4 flex-row">
+                        <TouchableOpacity onPress={()=> router.push({pathname:"/vote", params:{pollCode:"1756212994383", pollCreator:"", pollName:"Presidential Election"}})} className="h-20 w-[100%] px-4 flex-row">
                                     <View className="w-[70%] h-[100%] justify-center">
-                                        <Text className="font-nunito-bold text-lg color-[#333]">Presidential Election 2027</Text>
+                                        <Text className="font-nunito-bold text-lg color-[#333]">Presidential Election</Text>
                                     </View>
                                     <View className="w-[30%] h-[100%] justify-center items-end ">
                                     
