@@ -2,7 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFonts } from "expo-font";
 import { useFocusEffect, useRouter } from "expo-router";
 import React, { useCallback, useEffect, useState } from "react";
-import { Keyboard, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Image, Keyboard, Text, TextInput, TouchableOpacity, View } from "react-native";
 import "../global.css";
 import SignUpController from './Controller/SignUpController';
 import Header from "./header";
@@ -135,6 +135,8 @@ const SignUp:React.FC<SignUpScreenProp> =  ({navigation})=>{
 
                     <View className="h-[100%] bg-[#F5F5DC] items-center" style={{justifyContent: isInputFocus == true ? "flex-start" : "center", backgroundColor:AppDetails.color.backgroundColor }}>
                 <Header />
+                  <Image source={require("../assets/images/icon.png")} className="w-24 h-24 mb-5" />
+
                   <Text className="color-[#333] text-4xl font-nunito-bold">Create your account</Text>
 
                   <View className="h-[50%] w-[90%] rounded-3xl flex justify-center items-center">

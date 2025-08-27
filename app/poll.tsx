@@ -1,7 +1,7 @@
 import { FontAwesome } from "@expo/vector-icons";
 import { router, useFocusEffect } from "expo-router";
 import React, { useCallback } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import "../global.css";
 import { globalNavBarStatus as setGlobalNavBar } from "./navbar";
 import useSharedStore from "./Repository/store";
@@ -33,8 +33,9 @@ const Pool = ()=>{
 
 
 return(
-
-        <View className="h-[100%] justify-center"  style={{backgroundColor:AppDetails.color.backgroundColor}}>
+        <View className="h-[100%] justify-center items-center"  style={{backgroundColor:AppDetails.color.backgroundColor}}>
+                <Image source={require("../assets/images/icon.png")} className="w-40 h-40 mb-5 absolute top-10" />
+            
                 <View className=" w-[100%] flex-row justify-around ">
                     <TouchableOpacity className="h-32 w-[40%] items-center justify-center rounded-xl" style={{borderWidth:1, borderColor:"#C9C9C9"}} onPress={()=> router.push("/createpool")}>
                         <FontAwesome name="plus-circle" size={30} color={"#C4A484"}/>

@@ -2,7 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFonts } from "expo-font";
 import { useFocusEffect, useRouter } from "expo-router";
 import React, { useCallback, useEffect, useState } from "react";
-import { Keyboard, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Image, Keyboard, Text, TextInput, TouchableOpacity, View } from "react-native";
 import SignInController from './Controller/SignInController';
 import Header from "./header";
 import Loader from "./loader";
@@ -125,14 +125,15 @@ const SignIn = ()=>{
                     <View className="h-[100%] items-center" style={{justifyContent: isInputFocus == true ? "flex-start" : "center", backgroundColor:AppDetails.color.backgroundColor }}>
 
                     <Header />
+                    <Image source={require("../assets/images/icon.png")} className="w-24 h-24 mb-5" />
                   <Text className="color-[#333] text-4xl font-nunito-bold">Login</Text>
 
                   <View className="h-[50%] w-[90%] rounded-3xl flex justify-center items-center">
-                    <View className=" w-[90%] h-24">
-                        <TextInput  placeholder="Vin" placeholderTextColor="gray" keyboardType="numeric" value={matricNumber}  onChangeText={setMatricNumber}  className="color-[#333] w-[100%]  rounded-3xl h-[70%] text-xl px-3"/>
+                    <View className="w-[90%] h-24">
+                        <TextInput placeholder="Vin" placeholderTextColor="gray" keyboardType="default" value={matricNumber} onChangeText={setMatricNumber} className="bg-white border border-gray-300 color-[#333] w-[100%] rounded-3xl h-[70%] text-xl px-3"/>
                     </View>
-                    <View className=" w-[90%] h-24">
-                        <TextInput placeholder="Password" placeholderTextColor="gray" secureTextEntry={!passwordVisible} value={password} onChangeText={setPassword} className="color-[#333] w-[100%]  rounded-3xl h-[70%] text-xl px-3"/>
+                    <View className="w-[90%] h-24">
+                        <TextInput placeholder="Password" placeholderTextColor="gray" secureTextEntry={!passwordVisible} value={password} onChangeText={setPassword} className="bg-white border border-gray-300 color-[#333] w-[100%] rounded-3xl h-[70%] text-xl px-3"/>
                     </View>
                     
                     <View className="items-center">
