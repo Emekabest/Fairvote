@@ -9,12 +9,13 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import '../global.css';
 import NavBar from "./navbar";
 
+
 // keep splash visible while loading
 SplashScreen.preventAutoHideAsync();
 
 
-export default function RootLayout() {
 
+export default function RootLayout() {
 
     useEffect(() => {
     const prepare = async () => {
@@ -22,6 +23,7 @@ export default function RootLayout() {
       await new Promise(resolve => setTimeout(resolve, 5000));
       await SplashScreen.hideAsync();
     };
+
 
     prepare();
   }, []);
