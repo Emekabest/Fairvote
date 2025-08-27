@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router, useFocusEffect } from "expo-router";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState, } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import Confirmation from "./confirmation";
 import { globalNavBarStatus as setGlobalNavBar } from "./navbar";
@@ -43,7 +43,7 @@ const Profile = ()=>{
              await AsyncStorage.removeItem("matric-number")
 
             router.dismissAll();
-            router.replace("/signin")
+            router.replace("/signin" as any)
 
         })
 
@@ -96,7 +96,7 @@ const Profile = ()=>{
 
             </TouchableOpacity> */}
 
-            <TouchableOpacity className="h-20 px-4 mt-4 justify-center" onPress={()=> router.push("/category")}>
+            <TouchableOpacity className="h-20 px-4 mt-4 justify-center" onPress={()=> router.push("/category" as any)}>
                 <Text className="font-nunito-bold text-xl color-[#333]">Category</Text>
 
             </TouchableOpacity>

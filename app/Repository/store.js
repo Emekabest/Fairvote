@@ -23,6 +23,8 @@ const useSharedStore = create((set) => ({
 
   confirmation:ConfirmationService,
 
+  isUserVote: false,
+
   
   setValue: (newValue) => set({ value: newValue }),
 
@@ -30,7 +32,9 @@ const useSharedStore = create((set) => ({
 
   setHomeData:(newHomeData)=> set({homeData: newHomeData}),
 
-  setConfirmation:(newConfirmation)=> set({confirmation: newConfirmation})
+  setConfirmation:(newConfirmation)=> set({confirmation: newConfirmation}),
+
+  setIsUserVote: (newIsUserVote) => set({isUserVote: newIsUserVote}),
 
 }));
 

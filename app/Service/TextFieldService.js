@@ -4,12 +4,18 @@ const TextFieldService = (fieldsToValidate, form)=>{
     
     const rules = {
 
-      username: {
-        regex: /^[a-zA-Z0-9]{3,15}$/,
-        message: 'Username must be 3–15 alphanumeric characters',
+      vin: {
+        regex: /^\d{11}$/,
+        message: 'Vin must be 11 digits',
       },
 
-      matricNumber: {
+
+      phone: {
+        regex: /^\d{11}$/,
+        message: 'Phone must be 11 digits',
+      },
+
+      nin: {
         regex: /^\d{11}$/,
         message: 'Nin must be 11 digits',
       },

@@ -9,7 +9,7 @@ import { globalNavBarStatus as setGlobalNavBar } from "./navbar";
 const CategoryScreen = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState("Select an election");
+  const [selectedValue, setSelectedValue] = useState("Select Election Category");
   const options = ["Presidential Election", "Govornorship Election"];
   
 
@@ -34,24 +34,23 @@ const CategoryScreen = () => {
   };
 
   const handleConfirm = () => {
-    if (selectedValue === "Presidential Election") {
+    if (selectedValue === "Presidential Election"){
       router.push({
-        pathname: "/vote",
+        pathname: "vote",
         params: {
           pollCode: "1756212994383",
           pollCreator: "",
-          pollName: "Presidential Election",
-        },
-      });
+          pollName: "Presidential Election"
+        }
+      } as any);
     }
   };
 
   return (
     <View className=" flex-1 bg-white">
       <Header />
-      <View className="flex-1 justify-center items-center p-5 -mt-16">
-        <Image source={require("../assets/images/icon.png")} className="w-24 h-24" />
-        <Text className="font-nunito-bold text-xl text-[#141414] mt-2 mb-10">INEC</Text>
+      <View className="flex-1 justify-center items-center p-5">
+        <Image source={require("../assets/images/icon.png")} className="w-60 h-60 mb-10" />
         <View className="w-full">
           {/* Dropdown Button */}
           <TouchableOpacity
@@ -66,7 +65,7 @@ const CategoryScreen = () => {
             />
           </TouchableOpacity>
 
-          {/* Dropdown Options */}
+
           {isOpen && (
             <View className="mt-2 border border-gray-300 rounded-lg bg-white">
               {options.map((option, index) => (
@@ -82,6 +81,8 @@ const CategoryScreen = () => {
               ))}
             </View>
           )}
+
+
 
           {/* Confirm Button */}
           <TouchableOpacity

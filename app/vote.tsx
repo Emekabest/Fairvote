@@ -1,7 +1,7 @@
 import { FontAwesome } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Clipboard from 'expo-clipboard';
-import { Link, useFocusEffect, useLocalSearchParams } from "expo-router";
+import { Link, useFocusEffect, useLocalSearchParams, useRouter } from "expo-router";
 import React, { useCallback, useEffect, useState } from "react";
 import { Dimensions, FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 import Confirmation from "./confirmation";
@@ -19,14 +19,16 @@ import AppDetails from "./Service/AppDetails";
 import GetPollCandidatesWinner from "./Service/GetPollCandidatesWinner";
 
 
+
 const VoteScreen = ()=>{
+    const router = useRouter();
     const { height } = Dimensions.get("window");
     const { pollCode, pollName, pollCreator } = useLocalSearchParams();
 
         
         const [isCreator, setIsCreator] = useState(false);
 
-        const [candidates, setCandidates] = useState<any>([{"firstName": "null", "id": 0, "lastname": "null ", "pollCode": "0", "voteCount": 0, "image": "null"}])
+        const [candidates, setCandidates] = useState<any>([{"firstName": "null", "id": 0, "lastname": "null ", "pollCode": "0", "voteCount": 0, "image": "null", "manifesto": "null"}]);
 
         const [checkedCandidate, setCheckedCandidate] = useState<String>("");
         const [pollWinner, setPollWinner] = useState({firstname:"", id:"", lastname:""});
@@ -266,6 +268,8 @@ const VoteScreen = ()=>{
 
             }
         }
+
+
         
         setIsConfirmation(true)
         confirmation_store.setStatus(true)
@@ -345,18 +349,19 @@ const VoteScreen = ()=>{
                             <View className="h-20 flex-row items-center justify-between">
                                 <View className="flex-row items-center">
                                     <View className="h-4 w-4 mr-3 rounded-lg" style={{backgroundColor:pollActive ? "#64ED5A" : "#BFBFBF" }} />
-                                    <Text className="font-nunito-bold text-xl color-[#333]">{pollName}</Text>
+                                    <Text className="font-nunito-bold text-xl text-[#333]">{pollName}</Text>
                                 </View>
+
 
                                 <Link
                                     href={{
                                         pathname: "/chart",
-                                        params: { pollCode: pollCode, pollName: pollName }
+                                        params: { pollCode: pollCode, pollName: pollName}
                                     }}
                                     asChild
                                 >
                                     <TouchableOpacity className="bg-[#C4A484] py-2 px-4 rounded-lg">
-                                        <Text className="font-nunito-bold text-[#333]">View Chart</Text>
+                                        <Text className="font-nunito-bold text-white">View Chart</Text>
                                     </TouchableOpacity>
                                 </Link>
                             </View>
@@ -399,12 +404,12 @@ const VoteScreen = ()=>{
                         </View>
 
 
-                            <FlatList className="px-4" style= {{maxHeight:"75%"}}
+                            <FlatList className="px-4" style= {{maxHeight:"85%"}}
                                         data={candidates}
                                         keyExtractor={(candidate) => candidate.id}
                                         renderItem={({ item }) => (
 
-                                            <View className="h-52 mt-4 rounded-2xl bg-[#cece9f] w-[100%] px-4 flex-row">
+                                            <View className="h-52 mt-4 rounded-2xl bg-[#fff] w-[100%] px-4 flex-row">
                                                 <View className="w-[70%] h-[100%] flex-row items-center">
                                                     <View className="h-24 w-24 rounded-2xl overflow-hidden">
                                                         {
@@ -421,40 +426,31 @@ const VoteScreen = ()=>{
 
                                                         }
                                                      </View>
+                                                     
 
 
                                                      <View className="pl-4">
-                                                        <Text className="font-nunito-bold text-lg color-[#333]">{item.firstname} {item.lastname}</Text>
-                                                        <Text>Votes: {voteCounts[item.id] ?? 0}</Text>
+                                                        <TouchableOpacity onPress={() => {
+                                                            router.push({
+                                                                pathname: '/manifesto',
+                                                                params: {
+                                                                    firstname: item.firstname,
+                                                                    lastname: item.lastname,
+                                                                    // image: item.image,
+                                                                    manifesto: item.manifesto,
+                                                                },
+                                                            });
+                                                        }}>
+                                                            <Text className="font-nunito-bold text-lg" style={{color:"#333", textDecorationLine:"underline" }}>{item.firstname} {item.lastname}</Text>
+                                                        </TouchableOpacity>
                                                      </View>
-                                                </View>
-
-
-
-                                                <View  className="w-[30%]  h-[100%] justify-center items-end ">
-
-
-                                                        {
-                                                            voteMode ?
-
-                                                            <TouchableOpacity onPress={()=> handleCheckedCandidate(item.id)}>
-                                                                <FontAwesome name={checkedCandidate === item.id ? "check-square-o" : "square-o"} size={40} color="#C4A484" />
-                                                            </TouchableOpacity>
-
-                                                            :
-
-                                                            <View>
-                                                                <FontAwesome name={checkedCandidate === item.id ? "check-square-o" : "square-o"} size={40} color={checkedCandidate === item.id ? "green" : "#C4A484"} />
-                                                            </View>
-                                                        }
-
                                                 </View>
                                             </View>
                                         )}
                                         showsVerticalScrollIndicator={false}
                             />
 
-                            <View className="h-[10%] px-4"  style={{display:"flex", flexDirection:isCreator ? "row" : "column",  alignItems:isCreator ? "stretch" : "center" }}>
+                            {/* <View className="h-[10%] px-4"  style={{display:"flex", flexDirection:isCreator ? "row" : "column",  alignItems:isCreator ? "stretch" : "center" }}>
 
                                 <View className="h-[100%] w-[50%] justify-center items-center" style={{display:isCreator ? "flex" : "none"}}>
                                         <TouchableOpacity activeOpacity={1} onPress={handleDeactivateVote}>
@@ -475,7 +471,7 @@ const VoteScreen = ()=>{
 
                                             voteMode ?
 
-                                                <Text className="font-nunito-bold text-2xl color-[#333]">Vote</Text>
+                                                <Text className="font-nunito-bold text-2xl text-white">Vote</Text>
                                             
                                             :
 
@@ -494,53 +490,8 @@ const VoteScreen = ()=>{
                                     
                                 </View>
 
-                            
-                            
-
-
-                            {/* {
-                                voteMode ? 
-
-                                    <TouchableOpacity onPress={handleVote} className="absolute h-20 w-[50%] bottom-4 bg-[#C4A484] rounded-xl items-center justify-center" 
-                                        style={{opacity:checkedCandidate ? 1 : 0.6 }}
-                                    >
-                                                <Text className="font-nunito-bold text-2xl color-[#333]">Vote</Text>
-                                    </TouchableOpacity>
-
-                                    :
-
-                                    ""
-                             }
-
-
-                            {
-                                loadingVote ?
-                                
-                                    <View className="absolute h-20 w-[50%] bottom-4 bg-[#C4A484] rounded-xl items-center justify-center">
-                                            <Spinner color="#333" size={25} />
-                                    </View>
-
-                                    :
-
-                                    ""
-                            }
-
-
-                            {
-                                    !voteMode ?
-
-                                    <View className="absolute h-20 w-[50%] bottom-0 bg-[#C4A484] rounded-xl opacity-40 items-center justify-center">
-                                                <FontAwesome name="check"  size={40} color="#333" />
-                                    </View>
-
-                                    :
-
-                                    ""
-
-                            } */}
-
-
-                            </View>
+            
+                            </View> */}
 
                     </View>
 

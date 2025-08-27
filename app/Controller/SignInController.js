@@ -1,16 +1,16 @@
 import { get, ref } from "firebase/database";
 import { db } from "../../firebase.config";
 
-const SignInController = async(matricNumber, password)=>{
+const SignInController = async(vin, password)=>{
 
-    if (matricNumber.trim() == "" || password.trim() == ""){
+    if (vin.trim() == "" || password.trim() == ""){
         
         return "Please fill all fields"
     }
 
 
 
-      const userRef = ref(db, `users/${matricNumber}`);
+      const userRef = ref(db, `users/${vin}`);
 
 
       try {

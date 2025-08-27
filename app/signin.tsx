@@ -31,14 +31,21 @@ const SignIn:React.FC<SignInScreenProp> =  ({navigation})=>{
 
     const [isLoader, setIsLoader] = useState(false)
 
-
+    
 
     const [isInputFocus, setIsInputFocus] = useState(false);
-    const [matricNumber, setMatricNumber] = useState('');
+    const [Vin, setVin] = useState('');
     const [password, setPassword] = useState('');
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [formFeedback, setFormFeedbackMessage] = useState("");
 
+
+    const manifestoData = [
+
+        ""
+
+
+    ]
 
 
         useFocusEffect(
@@ -76,7 +83,7 @@ const SignIn:React.FC<SignInScreenProp> =  ({navigation})=>{
       loaderStore.setLoaderStatus(true)
       setIsLoader(true)
         
-      const message =  await SignInController(matricNumber, password)
+      const message =  await SignInController(Vin, password)
 
       setFormFeedbackMessage(message)
 
@@ -88,10 +95,10 @@ const SignIn:React.FC<SignInScreenProp> =  ({navigation})=>{
 
 
            await AsyncStorage.setItem("hasLaunched", "true")
-           await AsyncStorage.setItem("matric-number", matricNumber.trim());
+           await AsyncStorage.setItem("matric-number", Vin.trim());
         
-         router.push("/home")
          router.dismissAll()   
+         router.push({ pathname: "/category" } as any)
     }
       else if (message === "ERR_BAD_RESPONSE"){
             console.log("Server Error")
@@ -140,7 +147,7 @@ const SignIn:React.FC<SignInScreenProp> =  ({navigation})=>{
 
                   <View className="h-[50%] w-[90%] rounded-3xl flex justify-center items-center">
                     <View className=" w-[90%] h-24">
-                        <TextInput  placeholder="Matric Number" placeholderTextColor="gray" keyboardType="default" value={matricNumber}  onChangeText={setMatricNumber}  className="bg-white border border-gray-300 text-[#333] w-[100%]  rounded-3xl h-[70%] text-xl px-3"/>
+                        <TextInput  placeholder="Vin" placeholderTextColor="gray" keyboardType="default" value={Vin}  onChangeText={setVin}  className="bg-white border border-gray-300 text-[#333] w-[100%]  rounded-3xl h-[70%] text-xl px-3"/>
                      </View>
                     <View className=" w-[90%] h-24">
                         <TextInput placeholder="Password" placeholderTextColor="gray" secureTextEntry={!passwordVisible} value={password} onChangeText={setPassword} className="bg-white border border-gray-300 text-[#333] w-[100%]  rounded-3xl h-[70%] text-xl px-3"/>

@@ -35,8 +35,9 @@ const SignUp:React.FC<SignUpScreenProp> =  ({navigation})=>{
 
 
     const [isInputFocus, setIsInputFocus] = useState(false);
-    const [username, setUsername] = useState('')
-    const [matricNumber, setMatricNumber] = useState('');
+    const [vin, setVin] = useState('')
+    const [phone, setPhone] = useState('');
+    const [nin, setNin] = useState('');
     const [password, setPassword] = useState('');
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [formFeedback, setFormFeedbackMessage] = useState("");
@@ -78,7 +79,7 @@ const SignUp:React.FC<SignUpScreenProp> =  ({navigation})=>{
       loaderStore.setLoaderStatus(true)
       setIsLoader(true)
         
-      const message =  await SignUpController(username, matricNumber, password)
+      const message =  await SignUpController(vin, phone, nin, password)
 
       setFormFeedbackMessage(message)
 
@@ -90,10 +91,10 @@ const SignUp:React.FC<SignUpScreenProp> =  ({navigation})=>{
 
 
            await AsyncStorage.setItem("hasLaunched", "true")
-           await AsyncStorage.setItem("matric-number", matricNumber.trim());
+           await AsyncStorage.setItem("matric-number", nin.trim());
         
          router.push("/category")
-         router.dismissAll()   
+        //  router.dismissAll()   
     }
       else if (message === "ERR_BAD_RESPONSE"){
             console.log("Server Error")
@@ -138,14 +139,17 @@ const SignUp:React.FC<SignUpScreenProp> =  ({navigation})=>{
                   <Image source={require("../assets/images/icon.png")} className="w-24 h-24" />
                   <Text className="font-nunito-bold text-xl text-[#141414] mt-2 mb-5">INEC</Text>
 
-                  <Text className="text-[#333] text-4xl font-nunito-bold">Create your account</Text>
+                  <Text className="text-[#333] text-2xl font-nunito-bold">Create your account</Text>
 
                   <View className="h-[50%] w-[90%] rounded-3xl flex justify-center items-center">
                     <View className="w-[90%] h-24">
-                        <TextInput  placeholder="Username" placeholderTextColor="gray" value = {username} onChangeText={setUsername} className="bg-white border border-gray-300 text-[#333] w-[100%] rounded-3xl h-[70%] text-xl px-3"/>
+                        <TextInput  placeholder="Vin" placeholderTextColor="gray" keyboardType="numeric" value = {vin} onChangeText={setVin} className="bg-white border border-gray-300 text-[#333] w-[100%] rounded-3xl h-[70%] text-xl px-3"/>
+                    </View>
+                     <View className="w-[90%] h-24">
+                        <TextInput  placeholder="Phone" placeholderTextColor="gray"  keyboardType="numeric" value={phone}  onChangeText={setPhone}  className="bg-white border border-gray-300 text-[#333] w-[100%] rounded-3xl h-[70%] text-xl px-3"/>
                     </View>
                     <View className="w-[90%] h-24">
-                        <TextInput  placeholder="Matric Number" placeholderTextColor="gray" keyboardType="default" value={matricNumber}  onChangeText={setMatricNumber}  className="bg-white border border-gray-300 text-[#333] w-[100%] rounded-3xl h-[70%] text-xl px-3"/>
+                        <TextInput  placeholder="Nin" placeholderTextColor="gray"  keyboardType="numeric" value={nin}  onChangeText={setNin}  className="bg-white border border-gray-300 text-[#333] w-[100%] rounded-3xl h-[70%] text-xl px-3"/>
                     </View>
                     <View className="w-[90%] h-24">
                         <TextInput placeholder="Password" placeholderTextColor="gray" secureTextEntry={!passwordVisible} value={password} onChangeText={setPassword} className="bg-white border border-gray-300 text-[#333] w-[100%] rounded-3xl h-[70%] text-xl px-3"/>
@@ -164,7 +168,7 @@ const SignUp:React.FC<SignUpScreenProp> =  ({navigation})=>{
 
             
                 <TouchableOpacity className="rounded-full h-20 w-[95%] bg-[#C4A484] absolute bottom-3 justify-center items-center " onPress={handleSignUp}>
-                        <Text className='font-nunito text-2xl'>SignUp</Text>
+                        <Text className='font-nunito text-2xl text-white'>SignUp</Text>
                 </TouchableOpacity>
                     </View>
                 }

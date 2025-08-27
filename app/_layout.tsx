@@ -41,6 +41,8 @@ export default function RootLayout() {
   useEffect(() => {
     const checkIfLaunched = async () => {
     //  await AsyncStorage.clear()
+
+    
     
       try {
 
@@ -49,14 +51,14 @@ export default function RootLayout() {
 
 
         if (isLaunched === 'true' && isUser){
-          router.replace('/category'); // or login, dashboard, etc.
+          router.replace('/category' as any); // or login, dashboard, etc.
         }
         else if(isLaunched==="true" && !isUser){
-            router.replace('/signin'); // or login, dashboard, etc. 
+            router.replace('/signin' as any); // or login, dashboard, etc. 
         }
         
         else {
-          router.replace('/getstarted');
+          router.replace('getstarted' as any);
         }
         
       } catch (e) {
@@ -90,6 +92,7 @@ export default function RootLayout() {
           <Stack.Screen name='profile' options={{headerShown:false}} />
           <Stack.Screen name='mypoll' options={{headerShown:false}} />
           <Stack.Screen name='chart' options={{headerShown:false}} />
+          <Stack.Screen name='manifesto' options={{headerShown:false}} />
 
         </Stack>
 

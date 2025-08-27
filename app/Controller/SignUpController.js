@@ -4,9 +4,9 @@ import TextFieldService from "../Service/TextFieldService";
 
 
 
-const SignUpController = async(username, matricNumber, password)=>{
+const SignUpController = async(vin, phone, nin, password)=>{
 
-    let signupFeedbackMessage = TextFieldService(["username", "matricNumber", "password"], {username, matricNumber, password})
+    let signupFeedbackMessage = TextFieldService(["vin", "phone", "nin", "password"], {vin, phone, nin, password})
 
     if (signupFeedbackMessage != "Successful"){
 
@@ -18,7 +18,7 @@ const SignUpController = async(username, matricNumber, password)=>{
 
 
 
-  const userRef = ref(db, `users/${matricNumber}`);
+  const userRef = ref(db, `users/${vin}`);
   
 
       try {
@@ -31,7 +31,8 @@ const SignUpController = async(username, matricNumber, password)=>{
             }
 
             await set(userRef, {
-                username,
+                phone,
+                nin,
                 password
               });
 

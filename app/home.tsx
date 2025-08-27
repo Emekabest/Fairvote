@@ -49,7 +49,7 @@ const Home = () => {
         useFocusEffect(
         useCallback(() => {
               
-            setGlobalNavBar(true)
+            setGlobalNavBar(true);
 
             navBarStore.setActiveButton("home")
             setNavBarStore({...navBarStore})

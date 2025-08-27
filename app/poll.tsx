@@ -50,6 +50,25 @@ return(
                 </View>
 
         </View>
+
+        //  <View  className="w-[30%]  h-[100%] justify-center items-end ">
+        
+        
+        //                                                          {
+        //                                                             voteMode ?
+        
+        //                                                             <TouchableOpacity onPress={()=> handleCheckedCandidate(item.id)}>
+        //                                                                 <FontAwesome name={checkedCandidate === item.id ? "check-square-o" : "square-o"} size={40} color="#C4A484" />
+        //                                                             </TouchableOpacity>
+        
+        //                                                             :
+        
+        //                                                             <View>
+        //                                                                 <FontAwesome name={checkedCandidate === item.id ? "check-square-o" : "square-o"} size={40} color={checkedCandidate === item.id ? "green" : "#C4A484"} />
+        //                                                             </View>
+        //                                                         } 
+        
+        //                                                 </View>
     )
 
 
