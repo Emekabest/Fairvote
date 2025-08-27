@@ -361,9 +361,9 @@ const VoteScreen = ()=>{
 
                 :
                     ""
-
             }
             
+
 
                <View>
 
@@ -371,9 +371,16 @@ const VoteScreen = ()=>{
 
                     <View className="" style={{height:height - AppDetails.header.height, marginTop:AppDetails.header.height}}>
 
+                    <View className="bg-[#fff] items-center justify-center">
+                <Image source={require("../assets/images/fairvote-logo.png")} className="w-32 h-32" />
+                        <Text className="font-nunito-bold text-xl text-[#141414] mt-2 mb-5">Fair Vote</Text> 
+                    </View>
+                      
+
                         <View className="h-[15%] px-4">
 
                             <View className="h-20 flex-row items-center justify-between">
+                                
                                 <View className="flex-row items-center">
                                     <View className="h-4 w-4 mr-3 rounded-lg" style={{backgroundColor:pollActive ? "#64ED5A" : "#BFBFBF" }} />
                                     <Text className="font-nunito-bold text-xl text-[#333]">{pollName}</Text>

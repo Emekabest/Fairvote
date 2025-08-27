@@ -136,8 +136,8 @@ const SignUp:React.FC<SignUpScreenProp> =  ({navigation})=>{
 
                     <View className="h-[100%] bg-[#F5F5DC] items-center" style={{justifyContent: isInputFocus == true ? "flex-start" : "center", backgroundColor:AppDetails.color.backgroundColor }}>
                 <Header />
-                  <Image source={require("../assets/images/icon.png")} className="w-24 h-24" />
-                  <Text className="font-nunito-bold text-xl text-[#141414] mt-2 mb-5">INEC</Text>
+                  <Image source={require("../assets/images/fairvote-logo.png")} className="w-24 h-24" />
+                  <Text className="font-nunito-bold text-xl text-[#141414] mt-2 mb-5">Fair Vote</Text>
 
                   <Text className="text-[#333] text-2xl font-nunito-bold">Create your account</Text>
 

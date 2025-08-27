@@ -105,8 +105,13 @@ const ChartScreen = () => {
     );
   }
 
+
   return (
     <SafeAreaView className="flex-1 bg-gray-50" edges={['bottom', 'left', 'right']}>
+                          <View className="bg-[#fff] items-center justify-center">
+                                <Image source={require("../assets/images/icon.png")} className="w-52 h-52" />
+                              <Text className="font-nunito-bold text-xl text-[#141414] mt-2 mb-5">Fair Vote</Text> 
+                          </View>
       <View className="p-4">
         <Text className="text-3xl font-nunito-bold text-center mb-2 text-gray-800">{pollName}</Text>
         <Text className="text-lg font-nunito text-center mb-8 text-gray-500">Live Election Results</Text>

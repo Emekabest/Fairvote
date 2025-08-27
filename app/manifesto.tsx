@@ -110,6 +110,10 @@ const ManifestoScreen = () => {
       <Stack.Screen options={{ title: candidateName }} />
       <Header />
       <ScrollView contentContainerStyle={{ paddingBottom: 120, paddingTop: 60 }}>
+        <View className="bg-[#fff] items-center justify-center">
+                <Image source={require("../assets/images/fairvote-logo.png")} className="w-52 h-52" />
+            <Text className="font-nunito-bold text-xl text-[#141414] mt-2 mb-5">Fair Vote</Text> 
+        </View>
         <View className="p-5 items-center">
           {manifestoImage && manifestoImage !== 'null' ? (
                 <Image

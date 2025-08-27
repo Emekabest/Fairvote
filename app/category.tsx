@@ -50,7 +50,9 @@ const CategoryScreen = () => {
     <View className=" flex-1 bg-white">
       <Header />
       <View className="flex-1 justify-center items-center p-5">
-        <Image source={require("../assets/images/icon.png")} className="w-60 h-60 mb-10" />
+        <Image source={require("../assets/images/fairvote-logo.png")} className="w-60 h-60 mb-10" />
+        <Text className="font-nunito-bold text-2xl text-[#141414] mt-2 mb-5">Fair Vote</Text>
+        
         <View className="w-full">
           {/* Dropdown Button */}
           <TouchableOpacity
