@@ -47,6 +47,9 @@ const VoteScreen = ()=>{
         const setLoaderStore = useSharedStore((state) => state.setValue);
 
 
+        const manifestoStore = useSharedStore((state) => state.manifestoImage);
+        const setManifestoStore = useSharedStore((state) => state.setManifestoImage);
+
         const confirmation_store = useSharedStore((state)=> state.confirmation)
         const setConfirmation_store = useSharedStore((state)=> state.setConfirmation)
 
@@ -310,6 +313,30 @@ const VoteScreen = ()=>{
         getPollCandidateWinner()
     },[candidates, voteCounts])
 
+
+
+
+    const handleMoveToManifesto = (item:any)=>{
+
+
+        setManifestoStore(item.image)
+
+        router.push({
+            pathname: '/manifesto',
+            params: {
+                firstname: item.firstname,
+                lastname: item.lastname,
+                manifesto: item.manifesto,
+            },
+        });
+                                                    
+
+    }
+
+
+
+
+
     return(
         <View style={{height:"100%"}}>
 
@@ -430,17 +457,7 @@ const VoteScreen = ()=>{
 
 
                                                      <View className="pl-4">
-                                                        <TouchableOpacity onPress={() => {
-                                                            router.push({
-                                                                pathname: '/manifesto',
-                                                                params: {
-                                                                    firstname: item.firstname,
-                                                                    lastname: item.lastname,
-                                                                    // image: item.image,
-                                                                    manifesto: item.manifesto,
-                                                                },
-                                                            });
-                                                        }}>
+                                                        <TouchableOpacity onPress={()=> handleMoveToManifesto(item)}>
                                                             <Text className="font-nunito-bold text-lg" style={{color:"#333", textDecorationLine:"underline" }}>{item.firstname} {item.lastname}</Text>
                                                         </TouchableOpacity>
                                                      </View>

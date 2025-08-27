@@ -25,6 +25,8 @@ const useSharedStore = create((set) => ({
 
   isUserVote: false,
 
+  manifestoImage:"",
+
   
   setValue: (newValue) => set({ value: newValue }),
 
@@ -35,6 +37,8 @@ const useSharedStore = create((set) => ({
   setConfirmation:(newConfirmation)=> set({confirmation: newConfirmation}),
 
   setIsUserVote: (newIsUserVote) => set({isUserVote: newIsUserVote}),
+
+  setManifestoImage: (newManifestoImage) => set({manifestoImage: newManifestoImage}),
 
 }));
 

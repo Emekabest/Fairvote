@@ -4,6 +4,7 @@ import { Stack, useLocalSearchParams } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import Header from './header';
+import useSharedStore from './Repository/store';
 
 
 const ManifestoScreen = () => {
@@ -17,7 +18,11 @@ const ManifestoScreen = () => {
     manifesto: string;
   }>();
 
-  
+        const manifestoStore = useSharedStore((state) => state.manifestoImage);
+
+        const [manifestoImage, setManifestoImage] = useState("");
+
+
   const {
     id: candidateId,
     firstname = 'Candidate',
@@ -83,19 +88,34 @@ const ManifestoScreen = () => {
     }, 1000); // Simulate 1-second network delay
   };
 
+
+  useEffect(() => {
+
+
+    setManifestoImage(manifestoStore)
+
+    console.log("Manifesto Image:", manifestoImage[0]);
+
+    
+  }, [manifestoImage]);    
+
   
 
   return (
+
+
+
+
     <View className="flex-1 bg-white">
       <Stack.Screen options={{ title: candidateName }} />
       <Header />
       <ScrollView contentContainerStyle={{ paddingBottom: 120, paddingTop: 60 }}>
         <View className="p-5 items-center">
-          {image && image !== 'null' ? (
-            <Image
-              source={{ uri: image }}
-              className="w-40 h-40 rounded-full border-4 border-gray-200"
-            />
+          {manifestoImage && manifestoImage !== 'null' ? (
+                <Image
+                source={{ uri: manifestoImage }}
+                className="w-40 h-40 rounded-full border-4 border-gray-200"
+                />
           ) : (
             <View className="w-40 h-40 rounded-full bg-gray-200 justify-center items-center">
               <Text className="text-gray-500">No Image</Text>
