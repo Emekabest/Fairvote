@@ -8,6 +8,11 @@
     "scheme": "fairvote", 
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/images/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
 
     "ios": {
       "supportsTablet": true
@@ -28,16 +33,6 @@
     },
     "plugins": [
       "expo-router",
-      [
-        "expo-splash-screen",
-        {
-          "image": "./assets/images/splash-icon.png",
-          "resizeMode": "cover",
-          "backgroundColor": "#333333",
-          "imageWidth":"100%",
-          "imageHeight":"100%"
-        }
-    ],
       "expo-font"
     ],
     "experiments": {
