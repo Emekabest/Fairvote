@@ -46,7 +46,7 @@ const Confirmation = ()=>{
                 <View className="h-60 p-3 w-[80%] rounded-xl bg-[#fff]">
 
                 <View className="h-[70%] items-center justify-center">
-                        <Text className="text-xl font-nunito-bold color-[#333]">Do you confirm your actions?</Text>
+                        <Text className="text-xl font-nunito-bold color-[#333]">Are you sure you want to vote this candidate?</Text>
                 </View>
                 <View className="h-[30%] flex-row justify-between">
                     <TouchableOpacity onPress={()=> handleActionButton("yes")} className="h-[100%] justify-center items-center w-[45%] rounded-xl" activeOpacity={1} style={{backgroundColor:AppDetails.color.iconColors}}>

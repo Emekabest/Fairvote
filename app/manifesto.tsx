@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Stack, useLocalSearchParams } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import Confirmation from './confirmation';
 import Header from './header';
 import useSharedStore from './Repository/store';
 
@@ -21,6 +22,12 @@ const ManifestoScreen = () => {
         const manifestoStore = useSharedStore((state) => state.manifestoImage);
 
         const [manifestoImage, setManifestoImage] = useState("");
+
+        const [isConfirmation, setIsConfirmation] = useState(false)
+        
+        
+        const confirmation_store = useSharedStore((state)=> state.confirmation)
+        const setConfirmation_store = useSharedStore((state)=> state.setConfirmation)
 
 
   const {
@@ -71,22 +78,43 @@ const ManifestoScreen = () => {
   const handleVote = async () => {
     if (!voteMode || isVoting) return;
 
-    setIsVoting(true);
-    setVoteFeedback('');
+    const isHandleVote = ()=>{
+      setIsVoting(true);
+      setVoteFeedback('');
 
-    // Simulate a successful vote for UI feedback for testing purposes
-    setTimeout(() => {
-      setIsVoting(false);
-      setVoteFeedback('thanks for voting');
-      setVoteMode(false); // Disable voting temporarily
-
-      // Re-enable voting after 30 minutes for testing
+      // Simulate a successful vote for UI feedback for testing purposes
       setTimeout(() => {
-        setVoteMode(true);
-        setVoteFeedback(''); // Clear the message
-      }, 30 * 60 * 1000); // 30 minutes in milliseconds
-    }, 1000); // Simulate 1-second network delay
+        setIsVoting(false);
+        setVoteFeedback('thanks for voting');
+        setVoteMode(false); // Disable voting temporarily
+
+        // Re-enable voting after 30 minutes for testing
+        setTimeout(() => {
+          setVoteMode(true);
+          setVoteFeedback(''); // Clear the message
+        }, 30 * 60 * 1000); // 30 minutes in milliseconds
+      }, 1000); // Simulate 1-second network delay
+
+    }
+
+        setIsConfirmation(true)
+        confirmation_store.setStatus(true)
+
+        confirmation_store.setYesButtonFunction(isHandleVote)
+
+        setConfirmation_store({...confirmation_store})
   };
+
+
+
+      useEffect(()=>{
+  
+          if (!confirmation_store.getStatus()){
+              setIsConfirmation(false)
+  
+          }
+  
+      },[confirmation_store.getStatus()])
 
 
   useEffect(() => {
@@ -107,6 +135,17 @@ const ManifestoScreen = () => {
 
 
     <View className="flex-1 bg-white">
+
+      {
+
+          isConfirmation ?
+
+            <Confirmation />
+
+          :
+              ""
+      }
+
       <Stack.Screen options={{ title: candidateName }} />
       <Header />
       <ScrollView contentContainerStyle={{ paddingBottom: 120, paddingTop: 60 }}>

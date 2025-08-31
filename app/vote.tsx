@@ -28,7 +28,7 @@ const VoteScreen = ()=>{
         
         const [isCreator, setIsCreator] = useState(false);
 
-        const [candidates, setCandidates] = useState<any>([{"firstName": "null", "id": 0, "lastname": "null ", "pollCode": "0", "voteCount": 0, "image": "null", "manifesto": "null"}]);
+        const [candidates, setCandidates] = useState<any>([{"firstName": "null", "id": 0, "lastname": "null ", "pollCode": "0", "voteCount": 0, "image": "null", "partyImage":"null", "manifesto": "null"}]);
 
         const [checkedCandidate, setCheckedCandidate] = useState<String>("");
         const [pollWinner, setPollWinner] = useState({firstname:"", id:"", lastname:""});
@@ -467,6 +467,14 @@ const VoteScreen = ()=>{
                                                         <TouchableOpacity onPress={()=> handleMoveToManifesto(item)}>
                                                             <Text className="font-nunito-bold text-lg" style={{color:"#333", textDecorationLine:"underline" }}>{item.firstname} {item.lastname}</Text>
                                                         </TouchableOpacity>
+                                                     </View>
+
+                                                     <View className="h-16 w-16 ml-10">
+                                                        <Image
+                                                                source={{ uri: item.partyImage }}
+                                                                style={{ width: "100%", height: "100%"}}
+                                                        />
+
                                                      </View>
                                                 </View>
                                             </View>
