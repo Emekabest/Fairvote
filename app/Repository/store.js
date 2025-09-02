@@ -27,6 +27,9 @@ const useSharedStore = create((set) => ({
 
   manifestoImage:"",
 
+  voteCategory:"",
+
+
   
   setValue: (newValue) => set({ value: newValue }),
 
@@ -39,6 +42,9 @@ const useSharedStore = create((set) => ({
   setIsUserVote: (newIsUserVote) => set({isUserVote: newIsUserVote}),
 
   setManifestoImage: (newManifestoImage) => set({manifestoImage: newManifestoImage}),
+
+  setVoteCategory: (newVoteCategory) => set({voteCategory: newVoteCategory}),
+
 
 }));
 

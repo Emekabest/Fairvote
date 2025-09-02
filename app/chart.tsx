@@ -19,7 +19,7 @@ type Candidate = {
 const BAR_COLORS = ["#3498db", "#e74c3c", "#2ecc71", "#f1c40f", "#9b59b6", "#1abc9c", "#e67e22"];
 
 const ChartScreen = () => {
-  const { pollCode, pollName } = useLocalSearchParams<{ pollCode: string; pollName: string }>();
+  const { pollCode, pollName, category } = useLocalSearchParams<{ pollCode: string; pollName: string; category: string }>();
 
   const [candidates, setCandidates] = useState<Candidate[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -36,10 +36,24 @@ const ChartScreen = () => {
       try {
         const pollData: any = await GetCandidateController(pollCode);
         if (pollData?.candidates) {
-          setCandidates(pollData.candidates);
+
+          console.log(category)
+          if (category === "governorship"){
+            const governorshipCandidate = pollData.candidates.filter((candidate:any)=> candidate.category === "governorship")
+            setCandidates(governorshipCandidate);
+
+          }
+          else{
+            const presidentialCandidate = pollData.candidates.filter((candidate:any)=> candidate.category != "governorship")
+          
+            setCandidates(presidentialCandidate);
+
+          }
+
+
           // Initialize votes for each candidate to 0
           const initialVotes: { [key: string]: number } = {};
-          pollData.candidates.forEach((c: Candidate) => {
+          candidates.forEach((c: Candidate) => {
             initialVotes[c.id] = 0;
           });
           setVoteCounts(initialVotes);

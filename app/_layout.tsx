@@ -58,7 +58,7 @@ export default function RootLayout() {
         }
         
         else {
-          router.replace('getstarted' as any);
+          router.replace('/signup' as any);
         }
         
       } catch (e) {

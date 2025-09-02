@@ -138,7 +138,27 @@ const VoteScreen = ()=>{
 
             const pollData:any = await GetCandidateController(pollCode);
             if (pollData.pollCode){
-                setCandidates(pollData.candidates)
+                const candidates = pollData.candidates
+
+                if (pollName === "Govornorship Election"){
+
+                   const govnorshipCandidate = candidates.filter((candidate:any)=> candidate.category === "governorship")
+
+                     setCandidates(govnorshipCandidate)
+                }
+                else if (pollName === "Presidential Election"){
+                    const presidentialCandidate = candidates.filter((candidate:any)=> candidate.category != "governorship")
+
+                    setCandidates(presidentialCandidate)
+
+                }
+
+                else if (pollName === "House of Assembly Election"){
+
+                   const govnorshipCandidate = candidates.filter((candidate:any)=> candidate.category === "governorship")
+
+                    setCandidates(govnorshipCandidate)                }
+
             }
             
             else if (pollData === "ERR_NETWORK"){
@@ -327,12 +347,15 @@ const VoteScreen = ()=>{
                 firstname: item.firstname,
                 lastname: item.lastname,
                 manifesto: item.manifesto,
+                category: item.category
             },
         });
                                                     
 
     }
 
+
+    
 
 
 
@@ -399,15 +422,7 @@ const VoteScreen = ()=>{
                                     </TouchableOpacity>
                                 </Link>
                             </View>
-                            <View className="w-[100%] items-start flex-row">
-                                <Text className="text-sm">Code:</Text>
-                                <Text className="font-medium text-sm">{pollCode}</Text>
-                                <TouchableOpacity onPress={handleCopyPollCode}>
-                                    <FontAwesome className="pl-3" name="copy" size={15} color="#333" />
-                                </TouchableOpacity>
-
-                                <Text className="absolute right-3 font-nunito-bold">{copyFeedBack}</Text>
-                            </View>
+                           
 
                             {
 

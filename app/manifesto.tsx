@@ -1,6 +1,6 @@
 import { FontAwesome } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Stack, useLocalSearchParams } from 'expo-router';
+import { router, Stack, useLocalSearchParams } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import Confirmation from './confirmation';
@@ -13,10 +13,10 @@ const ManifestoScreen = () => {
     id: string;
     firstname: string;
     lastname: string;
-    image: string;
     pollCode: string;
     pollName: string;
     manifesto: string;
+    category: string;
   }>();
 
         const manifestoStore = useSharedStore((state) => state.manifestoImage);
@@ -34,10 +34,10 @@ const ManifestoScreen = () => {
     id: candidateId,
     firstname = 'Candidate',
     lastname = '',
-    image,
     pollCode,
     pollName,
     manifesto,
+    category
   } = params;
 
   const [matricNumber, setMatricNumber] = useState('');
@@ -95,6 +95,15 @@ const ManifestoScreen = () => {
         }, 30 * 60 * 1000); // 30 minutes in milliseconds
       }, 1000); // Simulate 1-second network delay
 
+
+        setTimeout(()=>{
+          router.push({
+            pathname: "/chart",
+            params: { pollCode: "1756212994383", pollName: pollName, category: category }
+          })
+
+        }, 2000)
+
     }
 
         setIsConfirmation(true)
@@ -103,6 +112,8 @@ const ManifestoScreen = () => {
         confirmation_store.setYesButtonFunction(isHandleVote)
 
         setConfirmation_store({...confirmation_store})
+
+
   };
 
 
@@ -126,6 +137,8 @@ const ManifestoScreen = () => {
 
     
   }, [manifestoImage]);    
+
+  console.log(category)
 
   
 

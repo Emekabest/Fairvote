@@ -4,13 +4,17 @@ import React, { useCallback, useState } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import Header from "./header";
 import { globalNavBarStatus as setGlobalNavBar } from "./navbar";
+import useSharedStore from "./Repository/store";
 
 
 const CategoryScreen = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState("Select Election Category");
-  const options = ["Presidential Election", "Govornorship Election"];
+  const options = ["Presidential Election", "Govornorship Election", "House of Assembly Election"]
+
+        const voteCategoryStore = useSharedStore((state) => state.voteCategory);
+        const setVoteCategoryStore = useSharedStore((state) => state.setVoteCategory);
   
 
       useFocusEffect(
@@ -44,7 +48,33 @@ const CategoryScreen = () => {
         }
       } as any);
     }
-  };
+    else if (selectedValue === "Govornorship Election"){
+       router.push({
+        pathname: "vote",
+        params: {
+          pollCode: "1756212994383",
+          pollCreator: "",
+          pollName: "Govornorship Election"
+        }
+      } as any);
+    }else if (selectedValue === "House of Assembly Election"){
+
+       router.push({
+        pathname: "vote",
+        params: {
+          pollCode: "1756212994383",
+          pollCreator: "",
+          pollName: "House of Assembly Election"
+        }
+      } as any);
+
+    }
+
+    
+    
+  }
+
+  
 
   return (
     <View className=" flex-1 bg-white">
