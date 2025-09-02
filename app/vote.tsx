@@ -41,6 +41,8 @@ const VoteScreen = ()=>{
 
         const [pollActive, setPollActive] = useState(false)
 
+        const [category, setCategory] = useState("")
+
 
 
         const loaderStore = useSharedStore((state) => state.value);
@@ -145,6 +147,8 @@ const VoteScreen = ()=>{
                    const govnorshipCandidate = candidates.filter((candidate:any)=> candidate.category === "governorship")
 
                      setCandidates(govnorshipCandidate)
+                    setCategory("governorship")
+                    
                 }
                 else if (pollName === "Presidential Election"){
                     const presidentialCandidate = candidates.filter((candidate:any)=> candidate.category != "governorship")
@@ -413,7 +417,7 @@ const VoteScreen = ()=>{
                                 <Link
                                     href={{
                                         pathname: "/chart",
-                                        params: { pollCode: pollCode, pollName: pollName}
+                                        params: { pollCode: pollCode, pollName: pollName, category:category}
                                     }}
                                     asChild
                                 >
